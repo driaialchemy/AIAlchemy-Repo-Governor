@@ -1,0 +1,148 @@
+AIAlchemy Repo Governor — Weekly Evidence Report
+Report date: 2026-06-25T23:25:15+00:00
+GitHub owner: driaialchemy
+Run mode: scan_only
+
+Repo Governor discovered 16 repositories under driaialchemy. 0 were scanned. 0 were skipped because they were archived, forks, excluded by configuration, or otherwise disabled.
+No repositories were scanned in this run.
+
+Discovery notes:
+- No REPO_GOVERNOR_PAT or GITHUB_TOKEN set — only public repositories will be discovered. Private repos require a token.
+
+The evidence report was emailed successfully.
+
+Discovered: 16
+Scanned: 0
+Skipped: 0
+Passed: 0
+Needs work: 0
+
+Corrective and Verifiable Actions
+
+1. driaialchemy/Agent-Workflow-Review
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Agent-Workflow-Review
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+2. driaialchemy/ai-agent-governance
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-governance
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+3. driaialchemy/ai-agent-research-emailer
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-research-emailer
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+4. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-alchemy-prompt-evaluator
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+5. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/AIAlchemy-Repo-Governor
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+6. driaialchemy/contract-risk-review-pipeline
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contract-risk-review-pipeline
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+7. driaialchemy/contractriskreviewpipeline
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+8. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+9. driaialchemy/fishhatchery
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/fishhatchery
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+10. driaialchemy/governance-logger
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/governance-logger
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+11. driaialchemy/jobseeker
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/jobseeker
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+12. driaialchemy/mavenfuzzyfactory
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+13. driaialchemy/mslw111
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mslw111
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+14. driaialchemy/skillsartifactsbuild
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/skillsartifactsbuild
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+15. driaialchemy/testingsoftwareengineering
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/testingsoftwareengineering
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
+
+16. driaialchemy/workeragentcowork
+   Issue: Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/workeragentcowork
+   Corrective action: Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.
+   Verification: Confirm the repo appears in the next evidence report with status scanned.
+   Expected evidence: Per-repo audit JSON with status scanned.
+   Recommended mode: scan_only
+   Human review required: Yes
