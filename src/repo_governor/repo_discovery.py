@@ -14,6 +14,8 @@ from typing import Any
 
 import yaml
 
+from .security import redact_dict, redact_secrets, resolve_github_token
+
 VALID_MODES = frozenset({"scan_only", "prompt_only", "goal_loop"})
 
 DEFAULT_DISCOVERY_CONFIG = Path("config/repo-discovery.yml")
@@ -65,7 +67,8 @@ def _utc_now_iso() -> str:
 
 
 def _github_token() -> str | None:
-    return os.environ.get("REPO_GOVERNOR_PAT") or os.environ.get("GITHUB_TOKEN")
+    token, _warning = resolve_github_token()
+    return token
 
 
 def _request_json(url: str, token: str | None = None) -> Any:
@@ -89,8 +92,15 @@ def discover_github_repos(
 
     Returns (repos, warnings).
     """
-    token = token if token is not None else _github_token()
+    if token is not None:
+        resolved_token = token
+        token_warning = None
+    else:
+        resolved_token, token_warning = resolve_github_token()
+    token = resolved_token
     warnings: list[str] = []
+    if token_warning:
+        warnings.append(token_warning)
     if not token:
         warnings.append(
             "No REPO_GOVERNOR_PAT or GITHUB_TOKEN set — only public repositories "

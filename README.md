@@ -279,10 +279,24 @@ Set these environment variables (or GitHub Actions secrets):
 | `SMTP_USERNAME` | Yes | SMTP login |
 | `SMTP_PASSWORD` | Yes | SMTP password |
 | `SMTP_USE_TLS` | Yes | `true` or `false` |
-| `REPORT_EMAIL_TO` | No | Defaults to `draialchemy@gmail.com` |
+| `REPORT_EMAIL_TO` | No | Defaults to `draialchemy@gmail.com` (also set as GitHub secret) |
 | `REPO_GOVERNOR_PAT` | Optional | Needed to discover and scan **private** repos |
 
 If credentials are missing, the report is still saved locally and the audit records `email_delivery_status: skipped_missing_credentials`.
+
+### Corrective and Verifiable Actions
+
+When a repository fails agent-readiness checks or cannot be scanned, the evidence report includes a **Corrective and Verifiable Actions** section. Each finding lists:
+
+- **Issue** — what was found
+- **Why it matters** — risk to autonomous agent use
+- **Corrective action** — what to fix
+- **Verification action** — how to confirm the fix
+- **Expected evidence** — audit file or PASS status to look for
+- **Recommended mode** — usually `prompt_only` for safe remediation planning
+- **Human review required** — Yes for HIGH-risk or scan failures
+
+Weekly `scan_only` runs report these actions but **do not modify target repositories**.
 
 ### GitHub Actions
 

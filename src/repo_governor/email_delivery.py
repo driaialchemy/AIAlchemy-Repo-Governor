@@ -9,6 +9,8 @@ from email.message import EmailMessage
 from pathlib import Path
 from typing import Literal
 
+from .security import redact_secrets
+
 EmailDeliveryStatus = Literal[
     "sent",
     "skipped_missing_credentials",
@@ -50,6 +52,7 @@ OPTIONAL_EMAIL_VARS = ["SMTP_USE_TLS", "REPORT_EMAIL_TO"]
 
 GITHUB_SECRETS_HELP = [
     "REPORT_EMAIL_FROM",
+    "REPORT_EMAIL_TO",
     "SMTP_HOST",
     "SMTP_PORT",
     "SMTP_USERNAME",
@@ -150,7 +153,7 @@ def send_evidence_email(
     except Exception as exc:
         return EmailDeliveryResult(
             status="failed",
-            message=f"Email delivery failed: {exc}",
+            message=redact_secrets(f"Email delivery failed: {exc}"),
         )
 
     return EmailDeliveryResult(

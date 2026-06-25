@@ -142,7 +142,7 @@ def test_discover_github_repos_pagination():
 
 def test_discover_github_repos_warns_without_token():
     with patch("repo_governor.repo_discovery._request_json", return_value=[]):
-        with patch("repo_governor.repo_discovery._github_token", return_value=None):
+        with patch("repo_governor.repo_discovery.resolve_github_token", return_value=(None, None)):
             _, warnings = discover_github_repos("driaialchemy", token=None)
     assert any("token" in w.lower() for w in warnings)
 

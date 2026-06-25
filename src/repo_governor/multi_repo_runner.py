@@ -30,6 +30,7 @@ from .repo_discovery import (
     load_repo_discovery_config,
 )
 from .scanner import scan_repo
+from .security import redact_dict, redact_secrets, resolve_github_token
 
 RunMode = Literal["scan_only", "prompt_only", "goal_loop"]
 
@@ -64,16 +65,8 @@ def _validate_mode(mode: str) -> str:
 
 def _sanitize_message(message: str, token: str | None = None) -> str:
     """Remove secrets from error messages before logging or reporting."""
-    if token:
-        message = message.replace(token, "***REDACTED***")
-    for env_var in ("REPO_GOVERNOR_PAT", "GITHUB_TOKEN", "SMTP_PASSWORD"):
-        value = os.environ.get(env_var)
-        if value:
-            message = message.replace(value, "***REDACTED***")
-    if "x-access-token:" in message:
-        import re
-        message = re.sub(r"x-access-token:[^@]+@", "x-access-token:***REDACTED***@", message)
-    return message
+    extras = [token] if token else []
+    return redact_secrets(message, extra_values=extras)
 
 
 def clone_or_update_target_repo(
@@ -98,7 +91,7 @@ def clone_or_update_target_repo(
         return target
 
     if target.exists():
-        shutil.rmtree(target)
+        shutil.rmtree(target, ignore_errors=True)
 
     try:
         _git(
@@ -127,14 +120,15 @@ def _git(args: list[str], *, cwd: Path, token: str | None = None) -> None:
     )
     if result.returncode != 0:
         stderr = result.stderr.strip() or result.stdout.strip()
-        raise RuntimeError(_sanitize_message(f"git {' '.join(args)} failed: {stderr}", token))
+        safe_args = " ".join(redact_secrets(arg) for arg in args)
+        raise RuntimeError(_sanitize_message(f"git {safe_args} failed: {stderr}", token))
 
 
 def _write_repo_audit(audit_dir: Path, repo_name: str, payload: dict[str, Any]) -> Path:
     audit_dir.mkdir(parents=True, exist_ok=True)
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     path = audit_dir / f"repo_{repo_name}_{ts}.json"
-    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    path.write_text(json.dumps(redact_dict(payload), indent=2), encoding="utf-8")
     return path
 
 
@@ -270,7 +264,8 @@ def run_repo_governance_check(
         return enrich_repo_result_for_report(result)
 
     except Exception as exc:
-        result["errors"].append(str(exc))
+        safe_exc = _sanitize_message(str(exc))
+        result["errors"].append(safe_exc)
         result["status"] = "failed"
         audit_path = _write_repo_audit(
             audit_dir,
@@ -333,7 +328,9 @@ def run_multi_repo_governance_check(
     audit_root = audit_dir or Path("audit") / "multi_repo" / report_date
     audit_root.mkdir(parents=True, exist_ok=True)
 
-    token = (os.environ.get("REPO_GOVERNOR_PAT") or os.environ.get("GITHUB_TOKEN") or "").strip() or None
+    token, token_warning = resolve_github_token()
+    if token_warning:
+        run.discovery_warnings.append(token_warning)
     local_overrides = use_local_path_for or {}
 
     for entry in enabled:
@@ -376,7 +373,7 @@ def run_multi_repo_governance_check(
         "errors": run.errors,
         "discovery_warnings": run.discovery_warnings,
     }
-    summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    summary_path.write_text(json.dumps(redact_dict(summary), indent=2), encoding="utf-8")
     run.audit_summary_path = str(summary_path)
 
     report_paths = generate_evidence_reports(run)
@@ -409,7 +406,7 @@ def run_multi_repo_governance_check(
 
     summary["email_delivery_status"] = run.email_delivery_status
     summary["email_delivery_message"] = run.email_delivery_message
-    summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    summary_path.write_text(json.dumps(redact_dict(summary), indent=2), encoding="utf-8")
 
     return run
 
