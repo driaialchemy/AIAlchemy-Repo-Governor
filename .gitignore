@@ -32,6 +32,9 @@ htmlcov/
 reports/
 repo_governor_report_*.md
 
+# Goal-loop audit trail (local only)
+audit/
+
 # Environment / secrets
 .env
 .env.*

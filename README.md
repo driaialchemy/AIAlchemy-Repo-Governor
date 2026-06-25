@@ -25,6 +25,7 @@ Without governance, agents happily read `.env` files, commit generated artifacts
 - **Policy generation** — Writes `CLAUDE.md` (human-readable) and `repo_policy.yaml` (machine-readable) per repo
 - **Reports** — Generates 3 Markdown reports: governance overview, agent readiness, cleanup recommendations
 - **Agent-ready check** — Prints which repos pass all safety gates for immediate agent use
+- **Goal-based loop** — Runs scan → classify → policy → remediation prompt → verify with a JSON audit trail
 
 ---
 
@@ -57,6 +58,9 @@ repo-governor report "C:\Users\msell\OneDrive\AIAlchemy\repositories"
 
 # Show agent-readiness status
 repo-governor agent-ready "C:\Users\msell\OneDrive\AIAlchemy\repositories"
+
+# Run a full goal-based governance loop on one repo
+repo-governor goal-loop "C:\Users\msell\OneDrive\AIAlchemy\repositories\my-project"
 ```
 
 ---
@@ -70,6 +74,15 @@ repo-governor agent-ready "C:\Users\msell\OneDrive\AIAlchemy\repositories"
 | `policy-init <repo_path> [--overwrite\|--force]` | Write `CLAUDE.md` + `repo_policy.yaml` to a repo |
 | `report <root_path> [--output-dir DIR]` | Generate 3 Markdown reports (governance, readiness, cleanup) |
 | `agent-ready <root_path>` | Show repos that are safe for agent use |
+| `goal-loop <repo_path>` | Run scan → classify → policy → remediate → verify loop |
+
+### `goal-loop` flags
+
+| Flag | Description |
+|------|-------------|
+| `--goal TEXT` | Remediation goal (default: `make repo agent-ready`) |
+| `--audit-dir DIR` | Where to write audit JSON logs (default: `./audit/`) |
+| `--overwrite` / `--force` | Replace existing `CLAUDE.md` and `repo_policy.yaml` |
 
 ### `policy-init` flags
 
@@ -107,6 +120,69 @@ A repo is **Agent-Ready** when it is LOW risk, has `CLAUDE.md`, has `.gitignore`
 | `reports/AI_REPO_GOVERNANCE_REPORT.md` | Working directory | No (in `.gitignore`) |
 | `reports/agent_readiness_report.md` | Working directory | No (in `.gitignore`) |
 | `reports/cleanup_recommendations.md` | Working directory | No (in `.gitignore`) |
+| `audit/goal_loop_*.json` | Working directory | No (in `.gitignore`) |
+| `audit/<loop_id>/remediation_agent_prompt.md` | Working directory | No (in `.gitignore`) |
+| `audit/<loop_id>/remediation_plan.md` | Working directory | No (in `.gitignore`) |
+
+---
+
+## Goal-Based Loop
+
+The goal-based loop automates the governance workflow for a **single repository**:
+
+1. **Scan** — inspect files, languages, secrets indicators, and structure
+2. **Classify** — assign risk level and agent-readiness score
+3. **Policy** — write `CLAUDE.md` and `repo_policy.yaml` into the target repo
+4. **Remediate** — generate a bounded agent prompt and remediation plan (see safety limits below)
+5. **Verify** — re-scan and compare before/after agent-readiness
+
+### How to run
+
+```powershell
+repo-governor goal-loop "C:\path\to\your-repo"
+```
+
+Optional flags:
+
+```powershell
+repo-governor goal-loop "C:\path\to\your-repo" --audit-dir .\audit --overwrite
+```
+
+Exit code `0` means the verification scan reports the repo as agent-ready. Exit code `1` means issues remain.
+
+### What files it creates
+
+| Location | Purpose |
+|----------|---------|
+| `<repo>/CLAUDE.md` | Agent policy (in the target repo) |
+| `<repo>/repo_policy.yaml` | Machine-readable policy (in the target repo) |
+| `./audit/goal_loop_<timestamp>_<id>.json` | Full audit trail for the loop run |
+| `./audit/<loop_id>/remediation_agent_prompt.md` | Bounded prompt for a human or external agent |
+| `./audit/<loop_id>/remediation_plan.md` | Step-by-step remediation checklist |
+
+### Audit trail contents
+
+Each JSON audit file records:
+
+- `loop_id`, `timestamp`, `target_repo`, and `goal`
+- `initial_scan` — snapshot of the first scan
+- `risk_classification` — risk level, blocking issues, readiness score
+- `generated_artifacts` — paths to policy files written
+- `remediation_status` — `manual_agent_prompt_generated`, `executed`, or `failed`
+- `verification_scan` — post-loop scan and classification
+- `passed` — whether the repo is agent-ready after verification
+- `remaining_issues` and `errors`
+
+### Safety limits of autonomous remediation
+
+Repo Governor does **not** silently fix repositories on its own. By default:
+
+- The loop **generates** a remediation prompt and plan but does **not** execute an AI agent.
+- The audit log honestly records `remediation_status: manual_agent_prompt_generated`.
+- Verification re-scans the repo as-is; if no external agent applied fixes, `passed` will be `false` unless the repo was already agent-ready.
+- To hook up an external runner in the future, set `REPO_GOVERNOR_AGENT_RUNNER` — automatic execution is not yet implemented.
+
+The generated prompt instructs any agent to make **minimal safe changes** and forbids touching secrets, credentials, production config, or destructive operations.
 
 ---
 
@@ -126,7 +202,7 @@ A repo is **Agent-Ready** when it is LOW risk, has `CLAUDE.md`, has `.gitignore`
 pytest
 ```
 
-145 tests across scanner, classifier, policy generator, and reporter.
+154 tests across scanner, classifier, policy generator, reporter, and goal-based loop.
 
 ---
 
@@ -139,7 +215,8 @@ src/repo_governor/
     classifier.py   # Risk classification (HIGH/MEDIUM/LOW + readiness score)
     policy.py       # CLAUDE.md + repo_policy.yaml generator
     reporter.py     # Markdown report generator (3 report types)
-tests/              # pytest test suite (145 tests)
+    goal_based_loop.py  # Goal-based scan → classify → policy → verify loop
+tests/              # pytest test suite
 docs/               # Extended documentation
 ```
 

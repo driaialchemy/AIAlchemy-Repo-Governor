@@ -15,6 +15,7 @@ if sys.stderr.encoding and sys.stderr.encoding.lower().replace("-", "") not in (
 
 from . import __version__
 from .classifier import classify_all, classify_repo, RiskLevel
+from .goal_based_loop import run_goal_based_loop
 from .policy import write_policy, write_repo_policy
 from .reporter import write_all_reports, write_report
 from .scanner import scan_repo, scan_root
@@ -133,6 +134,55 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_goal_loop(args: argparse.Namespace) -> int:
+    repo_path = Path(args.repo_path)
+    audit_dir = Path(args.audit_dir) if args.audit_dir else None
+
+    print(f"Goal-based loop: {repo_path}\n")
+    try:
+        result = run_goal_based_loop(
+            repo_path,
+            goal=args.goal,
+            audit_dir=audit_dir,
+            overwrite_policy=args.overwrite,
+        )
+    except Exception as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+
+    print(f"Loop ID:              {result.loop_id}")
+    print(f"Initial risk:         {result.initial_risk_level}")
+    print(f"Initial agent-ready:  {'Yes' if result.initial_agent_ready else 'No'}")
+    print(f"Remediation status:   {result.remediation_status}")
+    print(f"Verification risk:    {result.verification_risk_level or 'n/a'}")
+    print(f"Verification ready:   {'Yes' if result.verification_agent_ready else 'No'}")
+    print(f"Outcome:              {'PASS' if result.passed else 'FAIL'}")
+
+    if result.generated_artifacts:
+        print("\nGenerated artifacts:")
+        for path in result.generated_artifacts:
+            print(f"  {path}")
+
+    if result.agent_prompt_path:
+        print(f"\nAgent prompt:         {result.agent_prompt_path}")
+    if result.remediation_plan_path:
+        print(f"Remediation plan:     {result.remediation_plan_path}")
+    if result.audit_log_path:
+        print(f"Audit log:            {result.audit_log_path}")
+
+    if result.remaining_issues:
+        print(f"\nRemaining issues ({len(result.remaining_issues)}):")
+        for issue in result.remaining_issues[:10]:
+            print(f"  - {issue}")
+
+    if result.errors:
+        print(f"\nErrors ({len(result.errors)}):")
+        for err in result.errors:
+            print(f"  - {err}", file=sys.stderr)
+
+    return 0 if result.passed else 1
+
+
 def cmd_agent_ready(args: argparse.Namespace) -> int:
     root = Path(args.root_path)
     try:
@@ -204,6 +254,29 @@ def _build_parser() -> argparse.ArgumentParser:
     p_agent = sub.add_parser("agent-ready", help="Show which repos are ready for agent use.")
     p_agent.add_argument("root_path", help="Root directory containing repos.")
     p_agent.set_defaults(func=cmd_agent_ready)
+
+    p_goal = sub.add_parser(
+        "goal-loop",
+        help="Run a full governance loop: scan, classify, policy, remediate, verify.",
+    )
+    p_goal.add_argument("repo_path", help="Path to the target repository.")
+    p_goal.add_argument(
+        "--goal",
+        default="make repo agent-ready",
+        help="Remediation goal (default: make repo agent-ready).",
+    )
+    p_goal.add_argument(
+        "--audit-dir",
+        default=None,
+        help="Directory for audit logs (default: ./audit/).",
+    )
+    p_goal.add_argument(
+        "--overwrite", "--force",
+        dest="overwrite",
+        action="store_true",
+        help="Overwrite existing policy files in the target repo.",
+    )
+    p_goal.set_defaults(func=cmd_goal_loop)
 
     return parser
 
