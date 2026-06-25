@@ -1,0 +1,62 @@
+name: Weekly Repo Governor Evidence
+
+"on":
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Run mode: scan_only, prompt_only, or goal_loop"
+        required: true
+        default: "scan_only"
+        type: choice
+        options:
+          - scan_only
+          - prompt_only
+          - goal_loop
+  schedule:
+    - cron: "46 15 * * 4"
+      timezone: "America/Phoenix"
+
+permissions:
+  contents: write
+
+jobs:
+  weekly-evidence:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_OWNER: driaialchemy
+      REPORT_EMAIL_TO: ${{ secrets.REPORT_EMAIL_TO }}
+      REPORT_EMAIL_FROM: ${{ secrets.REPORT_EMAIL_FROM }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SMTP_USE_TLS: ${{ secrets.SMTP_USE_TLS }}
+      REPO_GOVERNOR_PAT: ${{ secrets.REPO_GOVERNOR_PAT }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Run multi-repo governance check
+        run: |
+          python -m repo_governor.multi_repo_runner \
+            --owner driaialchemy \
+            --discover \
+            --mode "${{ github.event.inputs.mode || 'scan_only' }}" \
+            --send-email
+
+      - name: Commit evidence reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f audit/ reports/ config/repos.generated.yml || true
+          git commit -m "Add weekly all-repo governor evidence report" || echo "No report changes to commit"
+          git push

@@ -1,0 +1,23 @@
+github_owner: driaialchemy
+
+include_private: true
+include_archived: false
+include_forks: false
+include_templates: false
+
+default_mode: scan_only
+
+exclude_repos:
+  - archived-example
+  - test-temp-repo
+
+exclude_patterns:
+  - "tmp-*"
+  - "*-archive"
+
+include_repos: []
+
+repo_overrides:
+  AIAlchemy-Repo-Governor:
+    mode: scan_only
+    enabled: true

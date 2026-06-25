@@ -1,0 +1,5 @@
+# Optional manual overrides for discovered repositories.
+# Discovery + config/repo-discovery.yml are the primary source of truth.
+# Entries here merge on top of config/repos.generated.yml.
+
+repos: []

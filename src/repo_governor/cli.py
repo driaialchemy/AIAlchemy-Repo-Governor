@@ -15,6 +15,8 @@ if sys.stderr.encoding and sys.stderr.encoding.lower().replace("-", "") not in (
 
 from . import __version__
 from .classifier import classify_all, classify_repo, RiskLevel
+from .goal_based_loop import run_goal_based_loop
+from .multi_repo_runner import run_multi_repo_governance_check
 from .policy import write_policy, write_repo_policy
 from .reporter import write_all_reports, write_report
 from .scanner import scan_repo, scan_root
@@ -133,6 +135,107 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_goal_loop(args: argparse.Namespace) -> int:
+    repo_path = Path(args.repo_path)
+    audit_dir = Path(args.audit_dir) if args.audit_dir else None
+
+    print(f"Goal-based loop: {repo_path}\n")
+    try:
+        result = run_goal_based_loop(
+            repo_path,
+            goal=args.goal,
+            audit_dir=audit_dir,
+            overwrite_policy=args.overwrite,
+        )
+    except Exception as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+
+    print(f"Loop ID:              {result.loop_id}")
+    print(f"Initial risk:         {result.initial_risk_level}")
+    print(f"Initial agent-ready:  {'Yes' if result.initial_agent_ready else 'No'}")
+    print(f"Remediation status:   {result.remediation_status}")
+    print(f"Verification risk:    {result.verification_risk_level or 'n/a'}")
+    print(f"Verification ready:   {'Yes' if result.verification_agent_ready else 'No'}")
+    print(f"Outcome:              {'PASS' if result.passed else 'FAIL'}")
+
+    if result.generated_artifacts:
+        print("\nGenerated artifacts:")
+        for path in result.generated_artifacts:
+            print(f"  {path}")
+
+    if result.agent_prompt_path:
+        print(f"\nAgent prompt:         {result.agent_prompt_path}")
+    if result.remediation_plan_path:
+        print(f"Remediation plan:     {result.remediation_plan_path}")
+    if result.audit_log_path:
+        print(f"Audit log:            {result.audit_log_path}")
+
+    if result.remaining_issues:
+        print(f"\nRemaining issues ({len(result.remaining_issues)}):")
+        for issue in result.remaining_issues[:10]:
+            print(f"  - {issue}")
+
+    if result.errors:
+        print(f"\nErrors ({len(result.errors)}):")
+        for err in result.errors:
+            print(f"  - {err}", file=sys.stderr)
+
+    return 0 if result.passed else 1
+
+
+def cmd_weekly_evidence(args: argparse.Namespace) -> int:
+    try:
+        result = run_multi_repo_governance_check(
+            owner=args.owner,
+            mode=args.mode,
+            discover=args.discover,
+            workspace_dir=Path(args.workspace) if args.workspace else None,
+            audit_dir=Path(args.audit_dir) if args.audit_dir else None,
+            send_email=args.send_email,
+        )
+    except ValueError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+
+    scanned = len([r for r in result.repo_results if r.get("status") == "scanned"])
+    passed = len([r for r in result.repo_results if r.get("passed")])
+    print(f"\nWeekly evidence run: {result.run_id}")
+    print(f"GitHub owner:        {result.github_owner}")
+    print(f"Mode:                {result.mode}")
+    print(f"Discovered:          {result.total_discovered}")
+    print(f"Scanned:             {scanned}")
+    print(f"Skipped:             {len(result.skipped_repos)}")
+    print(f"Agent-ready passed:  {passed}")
+    print(f"Email status:        {result.email_delivery_status}")
+
+    if result.evidence_report_paths:
+        print(f"\nEvidence report:")
+        for label, path in result.evidence_report_paths.items():
+            print(f"  {label}: {path}")
+    if result.audit_summary_path:
+        print(f"Run audit summary:   {result.audit_summary_path}")
+
+    if result.discovery_warnings:
+        print("\nDiscovery warnings:")
+        for warning in result.discovery_warnings:
+            print(f"  - {warning}")
+
+    if result.email_delivery_status == "skipped_missing_credentials":
+        from .email_delivery import GITHUB_SECRETS_HELP, missing_email_env_vars
+
+        missing = missing_email_env_vars()
+        print(f"\nMissing SMTP environment variables: {', '.join(missing)}")
+        print(f"Configure these GitHub Actions secrets: {', '.join(GITHUB_SECRETS_HELP)}")
+
+    if result.errors:
+        print(f"\nErrors ({len(result.errors)}):")
+        for err in result.errors:
+            print(f"  - {err}", file=sys.stderr)
+
+    return 0
+
+
 def cmd_agent_ready(args: argparse.Namespace) -> int:
     root = Path(args.root_path)
     try:
@@ -204,6 +307,73 @@ def _build_parser() -> argparse.ArgumentParser:
     p_agent = sub.add_parser("agent-ready", help="Show which repos are ready for agent use.")
     p_agent.add_argument("root_path", help="Root directory containing repos.")
     p_agent.set_defaults(func=cmd_agent_ready)
+
+    p_goal = sub.add_parser(
+        "goal-loop",
+        help="Run a full governance loop: scan, classify, policy, remediate, verify.",
+    )
+    p_goal.add_argument("repo_path", help="Path to the target repository.")
+    p_goal.add_argument(
+        "--goal",
+        default="make repo agent-ready",
+        help="Remediation goal (default: make repo agent-ready).",
+    )
+    p_goal.add_argument(
+        "--audit-dir",
+        default=None,
+        help="Directory for audit logs (default: ./audit/).",
+    )
+    p_goal.add_argument(
+        "--overwrite", "--force",
+        dest="overwrite",
+        action="store_true",
+        help="Overwrite existing policy files in the target repo.",
+    )
+    p_goal.set_defaults(func=cmd_goal_loop)
+
+    p_weekly = sub.add_parser(
+        "weekly-evidence",
+        help="Discover all owner repos, run governance checks, and generate evidence report.",
+    )
+    p_weekly.add_argument(
+        "--owner",
+        default=None,
+        help="GitHub owner (default: from config/repo-discovery.yml).",
+    )
+    p_weekly.add_argument(
+        "--mode",
+        default="scan_only",
+        choices=["scan_only", "prompt_only", "goal_loop"],
+        help="Governance mode (default: scan_only).",
+    )
+    p_weekly.add_argument(
+        "--discover",
+        action="store_true",
+        default=True,
+        help="Discover repositories from GitHub (default: true).",
+    )
+    p_weekly.add_argument(
+        "--no-discover",
+        dest="discover",
+        action="store_false",
+        help="Use existing config/repos.generated.yml instead of discovering.",
+    )
+    p_weekly.add_argument(
+        "--workspace",
+        default=None,
+        help="Directory for cloned repositories.",
+    )
+    p_weekly.add_argument(
+        "--audit-dir",
+        default=None,
+        help="Directory for per-repo audit JSON files.",
+    )
+    p_weekly.add_argument(
+        "--send-email",
+        action="store_true",
+        help="Email the evidence report (requires SMTP env vars).",
+    )
+    p_weekly.set_defaults(func=cmd_weekly_evidence)
 
     return parser
 

@@ -32,6 +32,12 @@ htmlcov/
 reports/
 repo_governor_report_*.md
 
+# Goal-loop audit trail (local only)
+audit/
+
+# Cloned repositories workspace (never commit)
+workspace/
+
 # Environment / secrets
 .env
 .env.*
