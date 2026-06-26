@@ -45,6 +45,9 @@ jobs:
       - name: Install dependencies
         run: pip install -e .
 
+      - name: Prepare clone workspace
+        run: mkdir -p workspace/repos
+
       - name: Run multi-repo governance check
         run: |
           python -m repo_governor.multi_repo_runner \

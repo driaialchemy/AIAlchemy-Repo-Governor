@@ -119,7 +119,7 @@ def test_multi_repo_continues_after_one_repo_fails(tmp_path):
 
     statuses = {r["name"]: r.get("status") for r in result.repo_results}
     assert statuses.get("good") == "scanned"
-    assert statuses.get("bad") == "failed"
+    assert statuses.get("bad") == "clone_failed"
     assert len(result.repo_results) == 2
 
 

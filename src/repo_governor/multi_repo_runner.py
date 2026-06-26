@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import shutil
 import subprocess
@@ -10,6 +11,8 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
+
+logger = logging.getLogger(__name__)
 
 from .classifier import classify_repo
 from .evidence_report import enrich_repo_result_for_report, generate_evidence_reports
@@ -69,6 +72,25 @@ def _sanitize_message(message: str, token: str | None = None) -> str:
     return redact_secrets(message, extra_values=extras)
 
 
+def _log_repo_diag(
+    message: str,
+    *,
+    token: str | None = None,
+) -> None:
+    """Emit sanitized diagnostic lines for CI without leaking secrets."""
+    logger.info(_sanitize_message(message, token))
+
+
+def _verify_cloned_repo(target: Path) -> Path:
+    """Ensure clone destination exists, is a directory, and contains .git."""
+    resolved = target.resolve()
+    if not resolved.is_dir():
+        raise RuntimeError(f"Clone target is not a directory: {resolved}")
+    if not (resolved / ".git").exists():
+        raise RuntimeError(f"Clone target is missing .git directory: {resolved}")
+    return resolved
+
+
 def clone_or_update_target_repo(
     repo_entry: RegistryRepo,
     workspace_dir: Path,
@@ -76,39 +98,57 @@ def clone_or_update_target_repo(
     token: str | None = None,
 ) -> Path:
     """Clone or update a repository into the workspace directory."""
-    workspace_dir.mkdir(parents=True, exist_ok=True)
-    target = workspace_dir / repo_entry.name
+    workspace = workspace_dir.resolve()
+    workspace.mkdir(parents=True, exist_ok=True)
+    target = (workspace / repo_entry.name).resolve()
 
     clone_url = repo_entry.url
     clean_token = (token or "").strip()
     if clean_token and clone_url.startswith("https://"):
         clone_url = clone_url.replace("https://", f"https://x-access-token:{clean_token}@", 1)
 
-    if target.exists() and (target / ".git").exists():
+    if target.exists() and target.is_dir() and (target / ".git").exists():
         _git(["fetch", "--all", "--prune"], cwd=target, token=token)
         _git(["checkout", repo_entry.branch], cwd=target, token=token)
         _git(["pull", "--ff-only", "origin", repo_entry.branch], cwd=target, token=token)
-        return target
+        return _verify_cloned_repo(target)
 
     if target.exists():
-        shutil.rmtree(target, ignore_errors=True)
+        if target.is_dir():
+            shutil.rmtree(target)
+        else:
+            target.unlink()
 
     try:
         _git(
-            ["clone", "--branch", repo_entry.branch, "--single-branch", clone_url, str(target)],
-            cwd=workspace_dir,
+            [
+                "clone",
+                "--branch",
+                repo_entry.branch,
+                "--single-branch",
+                clone_url,
+                str(target),
+            ],
+            cwd=workspace,
             token=token,
         )
     except RuntimeError:
         if clean_token and repo_entry.visibility == "public":
             _git(
-                ["clone", "--branch", repo_entry.branch, "--single-branch", repo_entry.url, str(target)],
-                cwd=workspace_dir,
+                [
+                    "clone",
+                    "--branch",
+                    repo_entry.branch,
+                    "--single-branch",
+                    repo_entry.url,
+                    str(target),
+                ],
+                cwd=workspace,
                 token=token,
             )
         else:
             raise
-    return target
+    return _verify_cloned_repo(target)
 
 
 def _git(args: list[str], *, cwd: Path, token: str | None = None) -> None:
@@ -266,7 +306,8 @@ def run_repo_governance_check(
     except Exception as exc:
         safe_exc = _sanitize_message(str(exc))
         result["errors"].append(safe_exc)
-        result["status"] = "failed"
+        result["status"] = "scan_failed"
+        result["failure_stage"] = "scan"
         audit_path = _write_repo_audit(
             audit_dir,
             repo_entry.name,
@@ -324,7 +365,7 @@ def run_multi_repo_governance_check(
         enabled = [r for r in load_generated_repo_registry() if r.enabled]
         run.total_discovered = len(enabled)
 
-    ws = workspace_dir or Path("workspace") / "repos"
+    ws = (workspace_dir or Path("workspace") / "repos").resolve()
     audit_root = audit_dir or Path("audit") / "multi_repo" / report_date
     audit_root.mkdir(parents=True, exist_ok=True)
 
@@ -335,29 +376,48 @@ def run_multi_repo_governance_check(
 
     for entry in enabled:
         effective_mode = entry.mode if entry.mode in VALID_MODES else mode
+        clone_dest = ws / entry.name
+        _log_repo_diag(f"Discovering repo: {entry.full_name}", token=token)
+        _log_repo_diag(f"Clone destination: {clone_dest}", token=token)
         try:
             if entry.name in local_overrides:
                 repo_path = local_overrides[entry.name].resolve()
+                _log_repo_diag(f"Using local override path: {repo_path}", token=token)
             else:
                 repo_path = clone_or_update_target_repo(entry, ws, token=token)
+                _log_repo_diag("Clone status: success", token=token)
             repo_result = run_repo_governance_check(
                 repo_path,
                 entry,
                 mode=effective_mode,
                 audit_dir=audit_root,
             )
+            scan_ok = repo_result.get("status") == "scanned"
+            _log_repo_diag(
+                f"Scan status: {'success' if scan_ok else 'failed'}",
+                token=token,
+            )
+            if repo_result.get("audit_path"):
+                _log_repo_diag(f"Audit path: {repo_result['audit_path']}", token=token)
             run.repo_results.append(repo_result)
         except Exception as exc:
             safe_exc = _sanitize_message(str(exc), token)
+            _log_repo_diag("Clone status: failed", token=token)
             run.errors.append(f"{entry.name}: {safe_exc}")
             run.repo_results.append({
                 "name": entry.name,
                 "full_name": entry.full_name,
-                "status": "failed",
+                "status": "clone_failed",
+                "failure_stage": "clone",
                 "passed": False,
                 "errors": [safe_exc],
                 "audit_path": None,
             })
+
+    scanned_results = [r for r in run.repo_results if r.get("status") == "scanned"]
+    clone_failed_results = [r for r in run.repo_results if r.get("status") == "clone_failed"]
+    scan_failed_results = [r for r in run.repo_results if r.get("status") == "scan_failed"]
+    passed_results = [r for r in scanned_results if r.get("passed")]
 
     summary_path = audit_root / f"multi_repo_run_{run_id[:8]}.json"
     summary = {
@@ -366,8 +426,13 @@ def run_multi_repo_governance_check(
         "github_owner": github_owner,
         "mode": mode,
         "total_discovered": run.total_discovered,
-        "total_scanned": len([r for r in run.repo_results if r.get("status") == "scanned"]),
+        "total_eligible": len(enabled),
+        "total_scanned": len(scanned_results),
+        "total_clone_failed": len(clone_failed_results),
+        "total_scan_failed": len(scan_failed_results),
         "total_skipped": len(run.skipped_repos),
+        "total_passed": len(passed_results),
+        "total_needs_work": len([r for r in scanned_results if not r.get("passed")]),
         "skipped_repos": run.skipped_repos,
         "repo_results": run.repo_results,
         "errors": run.errors,
@@ -415,6 +480,8 @@ def main() -> None:
     import argparse
     import sys
 
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+
     parser = argparse.ArgumentParser(
         description="Run multi-repo governance checks for a GitHub owner.",
     )
@@ -445,10 +512,15 @@ def main() -> None:
         sys.exit(1)
 
     scanned = len([r for r in result.repo_results if r.get("status") == "scanned"])
+    clone_failed = len([r for r in result.repo_results if r.get("status") == "clone_failed"])
+    scan_failed = len([r for r in result.repo_results if r.get("status") == "scan_failed"])
     passed = len([r for r in result.repo_results if r.get("passed")])
     print(f"Run ID: {result.run_id}")
     print(f"Discovered: {result.total_discovered}")
+    print(f"Eligible: {len([r for r in result.repo_results])}")
     print(f"Scanned: {scanned}")
+    print(f"Clone failed: {clone_failed}")
+    print(f"Scan failed: {scan_failed}")
     print(f"Skipped: {len(result.skipped_repos)}")
     print(f"Passed: {passed}")
     print(f"Email: {result.email_delivery_status}")

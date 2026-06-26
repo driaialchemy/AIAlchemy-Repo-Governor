@@ -56,7 +56,8 @@ def _recommended_action(result_item: dict[str, Any]) -> str:
 def _build_corrective_actions(
     run: Any,
     scanned: list[dict[str, Any]],
-    failed_status: list[dict[str, Any]],
+    clone_failed: list[dict[str, Any]],
+    scan_failed: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     """Build corrective and verifiable action items for failed or incomplete checks."""
     actions: list[dict[str, Any]] = []
@@ -85,23 +86,54 @@ def _build_corrective_actions(
                 "human_review_required": item.get("risk_level") == "HIGH",
             })
 
-    for item in failed_status:
+    for item in clone_failed:
         repo_name = item.get("full_name", item.get("name", "unknown"))
-        for issue in item.get("errors") or ["Repository scan failed"]:
+        technical_detail = None
+        for raw_issue in item.get("errors") or []:
+            technical_detail = redact_secrets(str(raw_issue))
+            break
+        action = {
+            "repo": repo_name,
+            "issue": "The repository could not be cloned into the workflow workspace.",
+            "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+            "corrective_action": (
+                "Verify clone URL, branch name, token access, and GitHub Actions permissions; "
+                "then rerun the workflow."
+            ),
+            "verification_action": (
+                "Confirm the next evidence report shows the repo status as scanned_successfully."
+            ),
+            "expected_evidence": "Per-repo audit JSON exists and contains scan results.",
+            "recommended_mode": run.mode,
+            "human_review_required": True,
+        }
+        if technical_detail:
+            action["technical_detail"] = technical_detail
+        actions.append(action)
+
+    for item in scan_failed:
+        repo_name = item.get("full_name", item.get("name", "unknown"))
+        for raw_issue in item.get("errors") or ["Repository scan failed"]:
+            issue_text = redact_secrets(str(raw_issue))
+            if "not a directory" in issue_text.lower():
+                user_issue = "The repository could not be scanned after checkout."
+            else:
+                user_issue = issue_text
             actions.append({
                 "repo": repo_name,
-                "issue": redact_secrets(str(issue)),
+                "issue": user_issue,
                 "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
                 "corrective_action": (
-                    "Verify clone access, branch name, and repository availability; "
-                    "then re-run the weekly evidence workflow."
+                    "Review the audit evidence and repository layout; fix blocking issues "
+                    "and rerun the weekly evidence workflow."
                 ),
                 "verification_action": (
-                    "Confirm the repo appears in the next evidence report with status scanned."
+                    "Confirm the next evidence report shows the repo status as scanned_successfully."
                 ),
-                "expected_evidence": "Per-repo audit JSON with status scanned.",
+                "expected_evidence": "Per-repo audit JSON exists and contains scan results.",
                 "recommended_mode": run.mode,
                 "human_review_required": True,
+                "technical_detail": issue_text if user_issue != issue_text else None,
             })
 
     if run.mode == "scan_only" and actions:
@@ -110,6 +142,8 @@ def _build_corrective_actions(
                 "note",
                 "Weekly scan_only mode reports findings only — target repos are not modified automatically.",
             )
+            if action.get("technical_detail") is None:
+                action.pop("technical_detail", None)
 
     return actions
 
@@ -132,6 +166,8 @@ def _format_corrective_actions_md(actions: list[dict[str, Any]]) -> list[str]:
         ]
         if action.get("note"):
             lines.append(f"- **Note:** {action['note']}")
+        if action.get("technical_detail"):
+            lines.append(f"- **Technical detail:** {action['technical_detail']}")
         lines.append("")
     return lines
 
@@ -158,9 +194,17 @@ def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
     """Build a structured summary dict from a multi-repo run."""
     scanned = [r for r in run.repo_results if r.get("status") == "scanned"]
     passed = [r for r in scanned if r.get("passed")]
-    failed = [r for r in scanned if not r.get("passed")]
-    failed_status = [r for r in run.repo_results if r.get("status") == "failed"]
-    corrective_actions = _build_corrective_actions(run, scanned, failed_status)
+    needs_work = [r for r in scanned if not r.get("passed")]
+    clone_failed = [r for r in run.repo_results if r.get("status") == "clone_failed"]
+    scan_failed = [r for r in run.repo_results if r.get("status") == "scan_failed"]
+    # Legacy runs may still use status "failed"
+    legacy_failed = [
+        r for r in run.repo_results
+        if r.get("status") == "failed" and r not in clone_failed + scan_failed
+    ]
+    scan_failed = scan_failed + legacy_failed
+    eligible = len(run.repo_results)
+    corrective_actions = _build_corrective_actions(run, scanned, clone_failed, scan_failed)
 
     return {
         "run_id": run.run_id,
@@ -168,10 +212,13 @@ def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
         "github_owner": run.github_owner,
         "mode": run.mode,
         "total_discovered": run.total_discovered,
+        "total_eligible": eligible,
         "total_scanned": len(scanned),
+        "total_clone_failed": len(clone_failed),
+        "total_scan_failed": len(scan_failed),
         "total_skipped": len(run.skipped_repos),
         "total_passed": len(passed),
-        "total_needs_work": len(failed),
+        "total_needs_work": len(needs_work),
         "skipped_repos": run.skipped_repos,
         "repo_results": run.repo_results,
         "corrective_actions": corrective_actions,
@@ -185,25 +232,33 @@ def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
 
 def _novice_summary(run: Any, summary: dict[str, Any]) -> str:
     discovered = summary["total_discovered"]
+    eligible = summary["total_eligible"]
     scanned = summary["total_scanned"]
     skipped = summary["total_skipped"]
     passed = summary["total_passed"]
     needs_work = summary["total_needs_work"]
+    clone_failed = summary["total_clone_failed"]
+    scan_failed = summary["total_scan_failed"]
 
     lines = [
         (
             f"Repo Governor discovered {discovered} repositories under {run.github_owner}. "
-            f"{scanned} were scanned. {skipped} were skipped because they were archived, "
-            f"forks, excluded by configuration, or otherwise disabled."
+            f"{eligible} were eligible for scanning. {scanned} were scanned successfully. "
+            f"{skipped} were skipped because they were archived, forks, excluded by "
+            f"configuration, or otherwise disabled."
         ),
     ]
+    if clone_failed or scan_failed:
+        lines.append(
+            f"{clone_failed} could not be cloned and {scan_failed} failed during scanning."
+        )
     if scanned:
         lines.append(
             f"Of the scanned repositories, {passed} passed agent-readiness checks and "
             f"{needs_work} need additional governance work before an autonomous coding agent "
             f"should be allowed to make changes."
         )
-    else:
+    elif not clone_failed and not scan_failed:
         lines.append("No repositories were scanned in this run.")
 
     if run.discovery_warnings:
@@ -251,7 +306,10 @@ def generate_evidence_reports(
         "## Counts",
         "",
         f"- Repositories discovered: {summary['total_discovered']}",
-        f"- Repositories scanned: {summary['total_scanned']}",
+        f"- Repositories eligible: {summary['total_eligible']}",
+        f"- Repositories scanned successfully: {summary['total_scanned']}",
+        f"- Clone failures: {summary['total_clone_failed']}",
+        f"- Scan failures: {summary['total_scan_failed']}",
         f"- Repositories skipped: {summary['total_skipped']}",
         f"- Agent-ready (passed): {summary['total_passed']}",
         f"- Need governance work: {summary['total_needs_work']}",
@@ -266,7 +324,11 @@ def generate_evidence_reports(
         md_lines.append("")
 
     scanned = [r for r in run.repo_results if r.get("status") == "scanned"]
-    failed_status = [r for r in run.repo_results if r.get("status") == "failed"]
+    clone_failed = [r for r in run.repo_results if r.get("status") == "clone_failed"]
+    scan_failed = [
+        r for r in run.repo_results
+        if r.get("status") in ("scan_failed", "failed")
+    ]
     corrective_actions = summary.get("corrective_actions") or []
 
     if scanned:
@@ -296,6 +358,19 @@ def generate_evidence_reports(
             md_lines.append(f"- **Recommended next action:** {item.get('recommended_action', 'Review audit.')}")
             md_lines.append("")
 
+    if clone_failed or scan_failed:
+        md_lines += ["## Failed Repositories", ""]
+        for item in clone_failed + scan_failed:
+            status_label = item.get("status", "failed").replace("_", " ")
+            md_lines += [
+                f"### {item.get('full_name', item.get('name'))}",
+                "",
+                f"- **Status:** {status_label}",
+            ]
+            for err in item.get("errors") or []:
+                md_lines.append(f"- **Error:** {redact_secrets(str(err))}")
+            md_lines.append("")
+
     md_lines += _format_corrective_actions_md(corrective_actions)
 
     txt_lines = [
@@ -307,7 +382,10 @@ def generate_evidence_reports(
         novice,
         "",
         f"Discovered: {summary['total_discovered']}",
+        f"Eligible: {summary['total_eligible']}",
         f"Scanned: {summary['total_scanned']}",
+        f"Clone failed: {summary['total_clone_failed']}",
+        f"Scan failed: {summary['total_scan_failed']}",
         f"Skipped: {summary['total_skipped']}",
         f"Passed: {summary['total_passed']}",
         f"Needs work: {summary['total_needs_work']}",
