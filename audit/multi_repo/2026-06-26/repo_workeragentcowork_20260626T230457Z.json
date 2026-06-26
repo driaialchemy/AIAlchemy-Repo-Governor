@@ -1,0 +1,109 @@
+{
+  "repo": "driaialchemy/workeragentcowork",
+  "mode": "scan_only",
+  "timestamp": "2026-06-26T23:04:57+00:00",
+  "initial_scan": {
+    "name": "workeragentcowork",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/workeragentcowork",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": false,
+    "has_agents_md": false,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 26,
+    "languages": [
+      "Python"
+    ],
+    "has_tests_dir": false,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "anthropic",
+      "api_key",
+      "openai",
+      "postgres",
+      "requests",
+      "sqlite"
+    ],
+    "last_modified": "2026-06-26T23:04:57.192990"
+  },
+  "risk_classification": {
+    "risk_level": "HIGH",
+    "readiness_score": 90,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+      "Credential pattern indicators in code: api_key",
+      "External database terms detected (postgres) \u2014 potential data compliance risk.",
+      "Dependency manifests present: requirements.txt",
+      "Container configuration present (Dockerfile / docker-compose).",
+      "CI/CD workflow configuration present (.github/workflows).",
+      "HTTP networking libraries in use: requests",
+      "Missing CLAUDE.md \u2014 no agent policy defined.",
+      "Missing AGENTS.md \u2014 no machine-readable safety policy."
+    ],
+    "blocking_issues": [
+      "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+      "Credential pattern indicators in code: api_key",
+      "External database terms detected (postgres) \u2014 potential data compliance risk."
+    ],
+    "recommended_actions": [
+      "Document required API keys in .env.example; ensure keys are never committed.",
+      "Audit source code for hardcoded credentials and replace with environment variables.",
+      "Ensure database connection strings use environment variables; add .env to .gitignore.",
+      "Run a dependency audit before starting an agent session.",
+      "Ensure agents cannot trigger container builds or deployments without confirmation.",
+      "Review CI/CD workflow permissions before an agent session.",
+      "Document external API endpoints in README to give agents accurate context.",
+      "Run `repo-governor policy-init <repo_path>` to generate CLAUDE.md.",
+      "Add AGENTS.md defining permitted agent behaviors."
+    ],
+    "scan": {
+      "name": "workeragentcowork",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/workeragentcowork",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": false,
+      "has_agents_md": false,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 26,
+      "languages": [
+        "Python"
+      ],
+      "has_tests_dir": false,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "anthropic",
+        "api_key",
+        "openai",
+        "postgres",
+        "requests",
+        "sqlite"
+      ],
+      "last_modified": "2026-06-26T23:04:57.192990"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+    "Credential pattern indicators in code: api_key",
+    "External database terms detected (postgres) \u2014 potential data compliance risk.",
+    "Risk level is HIGH, expected LOW.",
+    "Missing CLAUDE.md.",
+    "Dependency manifests present: requirements.txt",
+    "Container configuration present (Dockerfile / docker-compose).",
+    "CI/CD workflow configuration present (.github/workflows).",
+    "HTTP networking libraries in use: requests",
+    "Missing CLAUDE.md \u2014 no agent policy defined.",
+    "Missing AGENTS.md \u2014 no machine-readable safety policy."
+  ],
+  "errors": []
+}

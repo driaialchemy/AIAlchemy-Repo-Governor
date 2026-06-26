@@ -1,0 +1,87 @@
+{
+  "repo": "driaialchemy/mavenfuzzyfactory",
+  "mode": "scan_only",
+  "timestamp": "2026-06-26T23:04:55+00:00",
+  "initial_scan": {
+    "name": "mavenfuzzyfactory",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": false,
+    "has_agents_md": true,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 52,
+    "languages": [
+      "Python",
+      "SQL"
+    ],
+    "has_tests_dir": true,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "requests",
+      "sqlite"
+    ],
+    "last_modified": "2026-06-26T23:04:55.627079"
+  },
+  "risk_classification": {
+    "risk_level": "MEDIUM",
+    "readiness_score": 100,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Dependency manifests present: pyproject.toml",
+      "CI/CD workflow configuration present (.github/workflows).",
+      "HTTP networking libraries in use: requests",
+      "Test suite present \u2014 actively developed project.",
+      "Missing CLAUDE.md \u2014 no agent policy defined."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Run a dependency audit before starting an agent session.",
+      "Review CI/CD workflow permissions before an agent session.",
+      "Document external API endpoints in README to give agents accurate context.",
+      "Run the test suite before and after any agent session.",
+      "Run `repo-governor policy-init <repo_path>` to generate CLAUDE.md."
+    ],
+    "scan": {
+      "name": "mavenfuzzyfactory",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": false,
+      "has_agents_md": true,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 52,
+      "languages": [
+        "Python",
+        "SQL"
+      ],
+      "has_tests_dir": true,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "requests",
+        "sqlite"
+      ],
+      "last_modified": "2026-06-26T23:04:55.627079"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Risk level is MEDIUM, expected LOW.",
+    "Missing CLAUDE.md.",
+    "Dependency manifests present: pyproject.toml",
+    "CI/CD workflow configuration present (.github/workflows).",
+    "HTTP networking libraries in use: requests",
+    "Test suite present \u2014 actively developed project.",
+    "Missing CLAUDE.md \u2014 no agent policy defined."
+  ],
+  "errors": []
+}

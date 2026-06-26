@@ -1,0 +1,70 @@
+{
+  "repo": "driaialchemy/mslw111",
+  "mode": "scan_only",
+  "timestamp": "2026-06-26T23:04:56+00:00",
+  "initial_scan": {
+    "name": "mslw111",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mslw111",
+    "is_git_repo": true,
+    "has_gitignore": false,
+    "has_readme": true,
+    "has_claude_md": false,
+    "has_agents_md": false,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 1,
+    "languages": [],
+    "has_tests_dir": false,
+    "artifact_paths": [],
+    "api_terms_found": [],
+    "last_modified": "2026-06-26T23:04:55.998782"
+  },
+  "risk_classification": {
+    "risk_level": "MEDIUM",
+    "readiness_score": 80,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Missing CLAUDE.md \u2014 no agent policy defined.",
+      "Missing AGENTS.md \u2014 no machine-readable safety policy.",
+      "Missing .gitignore \u2014 unintended files may be tracked."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Run `repo-governor policy-init <repo_path>` to generate CLAUDE.md.",
+      "Add AGENTS.md defining permitted agent behaviors.",
+      "Add a .gitignore appropriate for the repository's language stack."
+    ],
+    "scan": {
+      "name": "mslw111",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mslw111",
+      "is_git_repo": true,
+      "has_gitignore": false,
+      "has_readme": true,
+      "has_claude_md": false,
+      "has_agents_md": false,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 1,
+      "languages": [],
+      "has_tests_dir": false,
+      "artifact_paths": [],
+      "api_terms_found": [],
+      "last_modified": "2026-06-26T23:04:55.998782"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Risk level is MEDIUM, expected LOW.",
+    "Missing CLAUDE.md.",
+    "Missing .gitignore.",
+    "Missing CLAUDE.md \u2014 no agent policy defined.",
+    "Missing AGENTS.md \u2014 no machine-readable safety policy.",
+    "Missing .gitignore \u2014 unintended files may be tracked."
+  ],
+  "errors": []
+}

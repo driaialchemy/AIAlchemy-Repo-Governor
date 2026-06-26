@@ -1,0 +1,1063 @@
+AIAlchemy Repo Governor — Weekly Evidence Report
+Report date: 2026-06-26T23:04:27+00:00
+GitHub owner: driaialchemy
+Run mode: scan_only
+
+Repo Governor discovered 16 repositories under driaialchemy. 16 were eligible for scanning. 16 were scanned successfully. 0 were skipped because they were archived, forks, excluded by configuration, or otherwise disabled.
+Of the scanned repositories, 0 passed agent-readiness checks and 16 need additional governance work before an autonomous coding agent should be allowed to make changes.
+
+Discovery notes:
+- No REPO_GOVERNOR_PAT or GITHUB_TOKEN set — only public repositories will be discovered. Private repos require a token.
+
+The evidence report was emailed successfully.
+
+Discovered: 16
+Eligible: 16
+Scanned: 16
+Clone failed: 0
+Scan failed: 0
+Skipped: 0
+Passed: 0
+Needs work: 16
+
+Repo: driaialchemy/Agent-Workflow-Review
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/ai-agent-governance
+  Risk: HIGH
+  Agent-ready: FAIL
+  CLAUDE.md: yes
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+  Next action: Resolve HIGH-risk blocking issues before allowing any agent access.
+
+Repo: driaialchemy/ai-agent-research-emailer
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/ai-alchemy-prompt-evaluator
+  Risk: HIGH
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+  Next action: Resolve HIGH-risk blocking issues before allowing any agent access.
+
+Repo: driaialchemy/AIAlchemy-Repo-Governor
+  Risk: HIGH
+  Agent-ready: FAIL
+  CLAUDE.md: yes
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+  Next action: Resolve HIGH-risk blocking issues before allowing any agent access.
+
+Repo: driaialchemy/contract-risk-review-pipeline
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: yes
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json
+  Next action: Review audit evidence and run prompt_only or goal_loop when ready to remediate.
+
+Repo: driaialchemy/contractriskreviewpipeline
+  Risk: HIGH
+  Agent-ready: FAIL
+  CLAUDE.md: yes
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+  Next action: Resolve HIGH-risk blocking issues before allowing any agent access.
+
+Repo: driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+  Risk: HIGH
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+  Next action: Resolve HIGH-risk blocking issues before allowing any agent access.
+
+Repo: driaialchemy/fishhatchery
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/governance-logger
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/jobseeker
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/mavenfuzzyfactory
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/mslw111
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/skillsartifactsbuild
+  Risk: LOW
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_skillsartifactsbuild_20260626T230456Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/testingsoftwareengineering
+  Risk: MEDIUM
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json
+  Next action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+
+Repo: driaialchemy/workeragentcowork
+  Risk: HIGH
+  Agent-ready: FAIL
+  CLAUDE.md: no
+  Remediation: not_requested
+  Audit: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+  Next action: Resolve HIGH-risk blocking issues before allowing any agent access.
+
+Corrective and Verifiable Actions
+
+1. driaialchemy/Agent-Workflow-Review
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+2. driaialchemy/Agent-Workflow-Review
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+3. driaialchemy/Agent-Workflow-Review
+   Issue: Dependency manifests present: requirements.txt
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+4. driaialchemy/Agent-Workflow-Review
+   Issue: Test suite present — actively developed project.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+5. driaialchemy/Agent-Workflow-Review
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+6. driaialchemy/Agent-Workflow-Review
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+7. driaialchemy/ai-agent-governance
+   Issue: Credential/secret files present: backend/.env
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+8. driaialchemy/ai-agent-governance
+   Issue: External AI API usage: openai — API key management required.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+9. driaialchemy/ai-agent-governance
+   Issue: Credential pattern indicators in code: api_key
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+10. driaialchemy/ai-agent-governance
+   Issue: External database terms detected (postgres) — potential data compliance risk.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+11. driaialchemy/ai-agent-governance
+   Issue: Risk level is HIGH, expected LOW.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+12. driaialchemy/ai-agent-governance
+   Issue: Exposed secret or credential files detected.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+13. driaialchemy/ai-agent-governance
+   Issue: Dependency manifests present: requirements.txt, package.json
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+14. driaialchemy/ai-agent-governance
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+15. driaialchemy/ai-agent-governance
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+16. driaialchemy/ai-agent-research-emailer
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+17. driaialchemy/ai-agent-research-emailer
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+18. driaialchemy/ai-agent-research-emailer
+   Issue: Dependency manifests present: requirements.txt
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+19. driaialchemy/ai-agent-research-emailer
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+20. driaialchemy/ai-agent-research-emailer
+   Issue: Test suite present — actively developed project.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+21. driaialchemy/ai-agent-research-emailer
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+22. driaialchemy/ai-agent-research-emailer
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+23. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Multiple AI provider integrations (anthropic, openai) — elevated orchestration complexity.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+24. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Credential pattern indicators in code: api_key
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+25. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Risk level is HIGH, expected LOW.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+26. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Missing CLAUDE.md.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+27. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Dependency manifests present: requirements.txt
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+28. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+29. driaialchemy/ai-alchemy-prompt-evaluator
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+30. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: Multiple AI provider integrations (anthropic, gemini, google.generativeai, openai) — elevated orchestration complexity.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+31. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: Credential pattern indicators in code: api_key, database_url
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+32. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: External database terms detected (postgres, supabase) — potential data compliance risk.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+33. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: Risk level is HIGH, expected LOW.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+34. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: Dependency manifests present: pyproject.toml
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+35. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: CI/CD workflow configuration present (.github/workflows).
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+36. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: HTTP networking libraries in use: aiohttp, httpx, requests
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+37. driaialchemy/AIAlchemy-Repo-Governor
+   Issue: Test suite present — actively developed project.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+38. driaialchemy/contract-risk-review-pipeline
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Review audit evidence and run prompt_only or goal_loop when ready to remediate.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+39. driaialchemy/contract-risk-review-pipeline
+   Issue: Dependency manifests present: requirements.txt
+   Corrective action: Review audit evidence and run prompt_only or goal_loop when ready to remediate.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+40. driaialchemy/contract-risk-review-pipeline
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Review audit evidence and run prompt_only or goal_loop when ready to remediate.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+41. driaialchemy/contract-risk-review-pipeline
+   Issue: Test suite present — actively developed project.
+   Corrective action: Review audit evidence and run prompt_only or goal_loop when ready to remediate.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+42. driaialchemy/contract-risk-review-pipeline
+   Issue: Missing README — project context unavailable to agent.
+   Corrective action: Review audit evidence and run prompt_only or goal_loop when ready to remediate.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+43. driaialchemy/contract-risk-review-pipeline
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Review audit evidence and run prompt_only or goal_loop when ready to remediate.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+44. driaialchemy/contractriskreviewpipeline
+   Issue: Multiple AI provider integrations (anthropic, gemini, openai) — elevated orchestration complexity.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+45. driaialchemy/contractriskreviewpipeline
+   Issue: Credential pattern indicators in code: api_key
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+46. driaialchemy/contractriskreviewpipeline
+   Issue: Risk level is HIGH, expected LOW.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+47. driaialchemy/contractriskreviewpipeline
+   Issue: Dependency manifests present: pyproject.toml
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+48. driaialchemy/contractriskreviewpipeline
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+49. driaialchemy/contractriskreviewpipeline
+   Issue: Test suite present — actively developed project.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+50. driaialchemy/contractriskreviewpipeline
+   Issue: Missing README — project context unavailable to agent.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+51. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Spreadsheet/data export files found: audit_trail.xlsx, audit_trail_with_tools_populated_demo_v2.xlsx, audit_trail_with_tools_populated_demo_v3.xlsx
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+52. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Multiple AI provider integrations (anthropic, gemini, google.generativeai, openai) — elevated orchestration complexity.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+53. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Credential pattern indicators in code: api_key, database_url
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+54. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: External database terms detected (postgres) — potential data compliance risk.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+55. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Risk level is HIGH, expected LOW.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+56. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Missing CLAUDE.md.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+57. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Dependency manifests present: requirements.txt
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+58. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Container configuration present (Dockerfile / docker-compose).
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+59. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: HTTP networking libraries in use: httpx
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+60. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+61. driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+62. driaialchemy/fishhatchery
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+63. driaialchemy/fishhatchery
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+64. driaialchemy/fishhatchery
+   Issue: Missing .gitignore.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+65. driaialchemy/fishhatchery
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+66. driaialchemy/fishhatchery
+   Issue: Missing README — project context unavailable to agent.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+67. driaialchemy/fishhatchery
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+68. driaialchemy/fishhatchery
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+69. driaialchemy/fishhatchery
+   Issue: Missing .gitignore — unintended files may be tracked.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+70. driaialchemy/governance-logger
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+71. driaialchemy/governance-logger
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+72. driaialchemy/governance-logger
+   Issue: Dependency manifests present: package.json
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+73. driaialchemy/governance-logger
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+74. driaialchemy/governance-logger
+   Issue: Test suite present — actively developed project.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+75. driaialchemy/governance-logger
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+76. driaialchemy/governance-logger
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+77. driaialchemy/jobseeker
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+78. driaialchemy/jobseeker
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+79. driaialchemy/jobseeker
+   Issue: Missing .gitignore.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+80. driaialchemy/jobseeker
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+81. driaialchemy/jobseeker
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+82. driaialchemy/jobseeker
+   Issue: Missing .gitignore — unintended files may be tracked.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+83. driaialchemy/mavenfuzzyfactory
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+84. driaialchemy/mavenfuzzyfactory
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+85. driaialchemy/mavenfuzzyfactory
+   Issue: Dependency manifests present: pyproject.toml
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+86. driaialchemy/mavenfuzzyfactory
+   Issue: CI/CD workflow configuration present (.github/workflows).
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+87. driaialchemy/mavenfuzzyfactory
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+88. driaialchemy/mavenfuzzyfactory
+   Issue: Test suite present — actively developed project.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+89. driaialchemy/mavenfuzzyfactory
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+90. driaialchemy/mslw111
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+91. driaialchemy/mslw111
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+92. driaialchemy/mslw111
+   Issue: Missing .gitignore.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+93. driaialchemy/mslw111
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+94. driaialchemy/mslw111
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+95. driaialchemy/mslw111
+   Issue: Missing .gitignore — unintended files may be tracked.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+96. driaialchemy/skillsartifactsbuild
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_skillsartifactsbuild_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+97. driaialchemy/skillsartifactsbuild
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_skillsartifactsbuild_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+98. driaialchemy/testingsoftwareengineering
+   Issue: Risk level is MEDIUM, expected LOW.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+99. driaialchemy/testingsoftwareengineering
+   Issue: Missing CLAUDE.md.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+100. driaialchemy/testingsoftwareengineering
+   Issue: Dependency manifests present: requirements.txt
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+101. driaialchemy/testingsoftwareengineering
+   Issue: Test suite present — actively developed project.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+102. driaialchemy/testingsoftwareengineering
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+103. driaialchemy/testingsoftwareengineering
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Add CLAUDE.md using `repo-governor policy-init` and review before committing.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json
+   Recommended mode: prompt_only
+   Human review required: No
+
+104. driaialchemy/workeragentcowork
+   Issue: Multiple AI provider integrations (anthropic, openai) — elevated orchestration complexity.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+105. driaialchemy/workeragentcowork
+   Issue: Credential pattern indicators in code: api_key
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+106. driaialchemy/workeragentcowork
+   Issue: External database terms detected (postgres) — potential data compliance risk.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+107. driaialchemy/workeragentcowork
+   Issue: Risk level is HIGH, expected LOW.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+108. driaialchemy/workeragentcowork
+   Issue: Missing CLAUDE.md.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+109. driaialchemy/workeragentcowork
+   Issue: Dependency manifests present: requirements.txt
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+110. driaialchemy/workeragentcowork
+   Issue: Container configuration present (Dockerfile / docker-compose).
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+111. driaialchemy/workeragentcowork
+   Issue: CI/CD workflow configuration present (.github/workflows).
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+112. driaialchemy/workeragentcowork
+   Issue: HTTP networking libraries in use: requests
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+113. driaialchemy/workeragentcowork
+   Issue: Missing CLAUDE.md — no agent policy defined.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes
+
+114. driaialchemy/workeragentcowork
+   Issue: Missing AGENTS.md — no machine-readable safety policy.
+   Corrective action: Resolve HIGH-risk blocking issues before allowing any agent access.
+   Verification: Re-run `repo-governor weekly-evidence --mode scan_only` and confirm agent-ready PASS for this repository.
+   Expected evidence: Updated audit file with PASS status: audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json
+   Recommended mode: prompt_only
+   Human review required: Yes

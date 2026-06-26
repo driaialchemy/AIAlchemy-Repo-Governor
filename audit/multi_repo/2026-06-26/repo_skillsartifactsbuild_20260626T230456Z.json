@@ -1,0 +1,62 @@
+{
+  "repo": "driaialchemy/skillsartifactsbuild",
+  "mode": "scan_only",
+  "timestamp": "2026-06-26T23:04:56+00:00",
+  "initial_scan": {
+    "name": "skillsartifactsbuild",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/skillsartifactsbuild",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": false,
+    "has_agents_md": true,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 3,
+    "languages": [],
+    "has_tests_dir": false,
+    "artifact_paths": [],
+    "api_terms_found": [],
+    "last_modified": "2026-06-26T23:04:56.363924"
+  },
+  "risk_classification": {
+    "risk_level": "LOW",
+    "readiness_score": 90,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Missing CLAUDE.md \u2014 no agent policy defined."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Run `repo-governor policy-init <repo_path>` to generate CLAUDE.md."
+    ],
+    "scan": {
+      "name": "skillsartifactsbuild",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/skillsartifactsbuild",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": false,
+      "has_agents_md": true,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 3,
+      "languages": [],
+      "has_tests_dir": false,
+      "artifact_paths": [],
+      "api_terms_found": [],
+      "last_modified": "2026-06-26T23:04:56.363924"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Missing CLAUDE.md.",
+    "Missing CLAUDE.md \u2014 no agent policy defined."
+  ],
+  "errors": []
+}

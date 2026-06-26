@@ -1,0 +1,82 @@
+{
+  "repo": "driaialchemy/contract-risk-review-pipeline",
+  "mode": "scan_only",
+  "timestamp": "2026-06-26T23:04:31+00:00",
+  "initial_scan": {
+    "name": "contract-risk-review-pipeline",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contract-risk-review-pipeline",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": false,
+    "has_claude_md": true,
+    "has_agents_md": false,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 22,
+    "languages": [
+      "Python"
+    ],
+    "has_tests_dir": true,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "requests"
+    ],
+    "last_modified": "2026-06-26T23:04:31.809066"
+  },
+  "risk_classification": {
+    "risk_level": "MEDIUM",
+    "readiness_score": 80,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Dependency manifests present: requirements.txt",
+      "HTTP networking libraries in use: requests",
+      "Test suite present \u2014 actively developed project.",
+      "Missing README \u2014 project context unavailable to agent.",
+      "Missing AGENTS.md \u2014 no machine-readable safety policy."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Run a dependency audit before starting an agent session.",
+      "Document external API endpoints in README to give agents accurate context.",
+      "Run the test suite before and after any agent session.",
+      "Add README.md describing the project purpose and structure.",
+      "Add AGENTS.md defining permitted agent behaviors."
+    ],
+    "scan": {
+      "name": "contract-risk-review-pipeline",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contract-risk-review-pipeline",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": false,
+      "has_claude_md": true,
+      "has_agents_md": false,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 22,
+      "languages": [
+        "Python"
+      ],
+      "has_tests_dir": true,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "requests"
+      ],
+      "last_modified": "2026-06-26T23:04:31.809066"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Risk level is MEDIUM, expected LOW.",
+    "Dependency manifests present: requirements.txt",
+    "HTTP networking libraries in use: requests",
+    "Test suite present \u2014 actively developed project.",
+    "Missing README \u2014 project context unavailable to agent.",
+    "Missing AGENTS.md \u2014 no machine-readable safety policy."
+  ],
+  "errors": []
+}

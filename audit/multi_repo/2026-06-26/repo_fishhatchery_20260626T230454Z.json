@@ -1,0 +1,84 @@
+{
+  "repo": "driaialchemy/fishhatchery",
+  "mode": "scan_only",
+  "timestamp": "2026-06-26T23:04:54+00:00",
+  "initial_scan": {
+    "name": "fishhatchery",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/fishhatchery",
+    "is_git_repo": true,
+    "has_gitignore": false,
+    "has_readme": false,
+    "has_claude_md": false,
+    "has_agents_md": false,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 2,
+    "languages": [
+      "Python"
+    ],
+    "has_tests_dir": false,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "requests"
+    ],
+    "last_modified": "2026-06-26T23:04:54.380862"
+  },
+  "risk_classification": {
+    "risk_level": "MEDIUM",
+    "readiness_score": 60,
+    "agent_ready": false,
+    "risk_reasons": [
+      "HTTP networking libraries in use: requests",
+      "Missing README \u2014 project context unavailable to agent.",
+      "Missing CLAUDE.md \u2014 no agent policy defined.",
+      "Missing AGENTS.md \u2014 no machine-readable safety policy.",
+      "Missing .gitignore \u2014 unintended files may be tracked."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Document external API endpoints in README to give agents accurate context.",
+      "Add README.md describing the project purpose and structure.",
+      "Run `repo-governor policy-init <repo_path>` to generate CLAUDE.md.",
+      "Add AGENTS.md defining permitted agent behaviors.",
+      "Add a .gitignore appropriate for the repository's language stack."
+    ],
+    "scan": {
+      "name": "fishhatchery",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/fishhatchery",
+      "is_git_repo": true,
+      "has_gitignore": false,
+      "has_readme": false,
+      "has_claude_md": false,
+      "has_agents_md": false,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 2,
+      "languages": [
+        "Python"
+      ],
+      "has_tests_dir": false,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "requests"
+      ],
+      "last_modified": "2026-06-26T23:04:54.380862"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Risk level is MEDIUM, expected LOW.",
+    "Missing CLAUDE.md.",
+    "Missing .gitignore.",
+    "HTTP networking libraries in use: requests",
+    "Missing README \u2014 project context unavailable to agent.",
+    "Missing CLAUDE.md \u2014 no agent policy defined.",
+    "Missing AGENTS.md \u2014 no machine-readable safety policy.",
+    "Missing .gitignore \u2014 unintended files may be tracked."
+  ],
+  "errors": []
+}

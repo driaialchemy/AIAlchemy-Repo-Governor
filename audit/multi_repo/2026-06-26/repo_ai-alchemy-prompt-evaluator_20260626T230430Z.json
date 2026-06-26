@@ -1,0 +1,94 @@
+{
+  "repo": "driaialchemy/ai-alchemy-prompt-evaluator",
+  "mode": "scan_only",
+  "timestamp": "2026-06-26T23:04:30+00:00",
+  "initial_scan": {
+    "name": "ai-alchemy-prompt-evaluator",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-alchemy-prompt-evaluator",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": false,
+    "has_agents_md": false,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 7,
+    "languages": [
+      "JavaScript",
+      "Python"
+    ],
+    "has_tests_dir": false,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "anthropic",
+      "api_key",
+      "cloudflare",
+      "openai"
+    ],
+    "last_modified": "2026-06-26T23:04:30.904703"
+  },
+  "risk_classification": {
+    "risk_level": "HIGH",
+    "readiness_score": 80,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+      "Credential pattern indicators in code: api_key",
+      "Dependency manifests present: requirements.txt",
+      "Missing CLAUDE.md \u2014 no agent policy defined.",
+      "Missing AGENTS.md \u2014 no machine-readable safety policy."
+    ],
+    "blocking_issues": [
+      "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+      "Credential pattern indicators in code: api_key"
+    ],
+    "recommended_actions": [
+      "Document required API keys in .env.example; ensure keys are never committed.",
+      "Audit source code for hardcoded credentials and replace with environment variables.",
+      "Run a dependency audit before starting an agent session.",
+      "Run `repo-governor policy-init <repo_path>` to generate CLAUDE.md.",
+      "Add AGENTS.md defining permitted agent behaviors."
+    ],
+    "scan": {
+      "name": "ai-alchemy-prompt-evaluator",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-alchemy-prompt-evaluator",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": false,
+      "has_agents_md": false,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 7,
+      "languages": [
+        "JavaScript",
+        "Python"
+      ],
+      "has_tests_dir": false,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "anthropic",
+        "api_key",
+        "cloudflare",
+        "openai"
+      ],
+      "last_modified": "2026-06-26T23:04:30.904703"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+    "Credential pattern indicators in code: api_key",
+    "Risk level is HIGH, expected LOW.",
+    "Missing CLAUDE.md.",
+    "Dependency manifests present: requirements.txt",
+    "Missing CLAUDE.md \u2014 no agent policy defined.",
+    "Missing AGENTS.md \u2014 no machine-readable safety policy."
+  ],
+  "errors": []
+}

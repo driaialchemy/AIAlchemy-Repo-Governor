@@ -1,0 +1,881 @@
+{
+  "run_id": "fda6ccfc-32f1-460a-b9ef-92bac0b690c9",
+  "timestamp": "2026-06-26T23:04:27+00:00",
+  "github_owner": "driaialchemy",
+  "mode": "scan_only",
+  "total_discovered": 16,
+  "total_eligible": 16,
+  "total_scanned": 16,
+  "total_clone_failed": 0,
+  "total_scan_failed": 0,
+  "total_skipped": 0,
+  "total_passed": 0,
+  "total_needs_work": 16,
+  "skipped_repos": [],
+  "repo_results": [
+    {
+      "name": "Agent-Workflow-Review",
+      "full_name": "driaialchemy/Agent-Workflow-Review",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 100,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "Agent-Workflow-Review",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Agent-Workflow-Review",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 12,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [],
+        "last_modified": "2026-06-26T23:04:28.801958"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: requirements.txt",
+        "Test suite present \u2014 actively developed project.",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_Agent-Workflow-Review_20260626T230428Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-agent-governance",
+      "full_name": "driaialchemy/ai-agent-governance",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "HIGH",
+      "readiness_score": 60,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "ai-agent-governance",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-governance",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": true,
+        "has_agents_md": false,
+        "has_env_files": true,
+        "env_file_paths": [
+          "backend/.env"
+        ],
+        "file_count": 81,
+        "languages": [
+          "TypeScript",
+          "Python"
+        ],
+        "has_tests_dir": false,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "api_key",
+          "openai",
+          "postgres",
+          "requests"
+        ],
+        "last_modified": "2026-06-26T23:04:30.114705"
+      },
+      "has_claude_md": true,
+      "remaining_issues": [
+        "Credential/secret files present: backend/.env",
+        "External AI API usage: openai \u2014 API key management required.",
+        "Credential pattern indicators in code: api_key",
+        "External database terms detected (postgres) \u2014 potential data compliance risk.",
+        "Risk level is HIGH, expected LOW.",
+        "Exposed secret or credential files detected.",
+        "Dependency manifests present: requirements.txt, package.json",
+        "HTTP networking libraries in use: requests",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_ai-agent-governance_20260626T230430Z.json",
+      "missing_controls": [
+        "AGENTS.md",
+        "secret/credential file handling"
+      ],
+      "recommended_action": "Resolve HIGH-risk blocking issues before allowing any agent access."
+    },
+    {
+      "name": "ai-agent-research-emailer",
+      "full_name": "driaialchemy/ai-agent-research-emailer",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 100,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "ai-agent-research-emailer",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-research-emailer",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 11,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "requests"
+        ],
+        "last_modified": "2026-06-26T23:04:30.486726"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: requirements.txt",
+        "HTTP networking libraries in use: requests",
+        "Test suite present \u2014 actively developed project.",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_ai-agent-research-emailer_20260626T230430Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-alchemy-prompt-evaluator",
+      "full_name": "driaialchemy/ai-alchemy-prompt-evaluator",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "HIGH",
+      "readiness_score": 80,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "ai-alchemy-prompt-evaluator",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-alchemy-prompt-evaluator",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 7,
+        "languages": [
+          "JavaScript",
+          "Python"
+        ],
+        "has_tests_dir": false,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "anthropic",
+          "api_key",
+          "cloudflare",
+          "openai"
+        ],
+        "last_modified": "2026-06-26T23:04:30.904703"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+        "Credential pattern indicators in code: api_key",
+        "Risk level is HIGH, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: requirements.txt",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_ai-alchemy-prompt-evaluator_20260626T230430Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Resolve HIGH-risk blocking issues before allowing any agent access."
+    },
+    {
+      "name": "AIAlchemy-Repo-Governor",
+      "full_name": "driaialchemy/AIAlchemy-Repo-Governor",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "HIGH",
+      "readiness_score": 90,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "AIAlchemy-Repo-Governor",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/AIAlchemy-Repo-Governor",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": true,
+        "has_agents_md": true,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 55,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "aiohttp",
+          "anthropic",
+          "api_key",
+          "cloudflare",
+          "database_url",
+          "gemini",
+          "google.generativeai",
+          "httpx",
+          "openai",
+          "postgres",
+          "requests",
+          "sqlite",
+          "supabase"
+        ],
+        "last_modified": "2026-06-26T23:04:31.380702"
+      },
+      "has_claude_md": true,
+      "remaining_issues": [
+        "Multiple AI provider integrations (anthropic, gemini, google.generativeai, openai) \u2014 elevated orchestration complexity.",
+        "Credential pattern indicators in code: api_key, database_url",
+        "External database terms detected (postgres, supabase) \u2014 potential data compliance risk.",
+        "Risk level is HIGH, expected LOW.",
+        "Dependency manifests present: pyproject.toml",
+        "CI/CD workflow configuration present (.github/workflows).",
+        "HTTP networking libraries in use: aiohttp, httpx, requests",
+        "Test suite present \u2014 actively developed project."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_AIAlchemy-Repo-Governor_20260626T230431Z.json",
+      "missing_controls": [],
+      "recommended_action": "Resolve HIGH-risk blocking issues before allowing any agent access."
+    },
+    {
+      "name": "contract-risk-review-pipeline",
+      "full_name": "driaialchemy/contract-risk-review-pipeline",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 80,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "contract-risk-review-pipeline",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contract-risk-review-pipeline",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": false,
+        "has_claude_md": true,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 22,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "requests"
+        ],
+        "last_modified": "2026-06-26T23:04:31.809066"
+      },
+      "has_claude_md": true,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Dependency manifests present: requirements.txt",
+        "HTTP networking libraries in use: requests",
+        "Test suite present \u2014 actively developed project.",
+        "Missing README \u2014 project context unavailable to agent.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_contract-risk-review-pipeline_20260626T230431Z.json",
+      "missing_controls": [
+        "README",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Review audit evidence and run prompt_only or goal_loop when ready to remediate."
+    },
+    {
+      "name": "contractriskreviewpipeline",
+      "full_name": "driaialchemy/contractriskreviewpipeline",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "HIGH",
+      "readiness_score": 90,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "contractriskreviewpipeline",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": false,
+        "has_claude_md": true,
+        "has_agents_md": true,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 39,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "anthropic",
+          "api_key",
+          "gemini",
+          "openai",
+          "requests"
+        ],
+        "last_modified": "2026-06-26T23:04:32.231360"
+      },
+      "has_claude_md": true,
+      "remaining_issues": [
+        "Multiple AI provider integrations (anthropic, gemini, openai) \u2014 elevated orchestration complexity.",
+        "Credential pattern indicators in code: api_key",
+        "Risk level is HIGH, expected LOW.",
+        "Dependency manifests present: pyproject.toml",
+        "HTTP networking libraries in use: requests",
+        "Test suite present \u2014 actively developed project.",
+        "Missing README \u2014 project context unavailable to agent."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_contractriskreviewpipeline_20260626T230432Z.json",
+      "missing_controls": [
+        "README"
+      ],
+      "recommended_action": "Resolve HIGH-risk blocking issues before allowing any agent access."
+    },
+    {
+      "name": "Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "full_name": "driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "HIGH",
+      "readiness_score": 75,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "Device-Lifecycle-Intelligence-Platform-DLIP-",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Device-Lifecycle-Intelligence-Platform-DLIP-",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 61,
+        "languages": [
+          "Python",
+          "SQL"
+        ],
+        "has_tests_dir": false,
+        "artifact_paths": [
+          "audit_trail.xlsx",
+          "audit_trail_with_tools_populated_demo_v2.xlsx",
+          "audit_trail_with_tools_populated_demo_v3.xlsx",
+          "audit_trail_with_tools_populated_demo_v4.xlsx",
+          "audit_trail_with_tools_v1.xlsx",
+          "brand_model_agg.xlsx",
+          "brand_model_aggregation.xlsx",
+          "device_data.xlsx",
+          "fft_demo_brands_updated.xlsx",
+          "gdpr_violations.xlsx",
+          "r2v3_violations.xlsx",
+          "seed/devicepassport_catalog.xlsx",
+          "seed/seed/devicepassport_catalog.xlsx",
+          "sensor_timeseries.xlsx"
+        ],
+        "api_terms_found": [
+          "anthropic",
+          "api_key",
+          "database_url",
+          "gemini",
+          "google.generativeai",
+          "httpx",
+          "openai",
+          "postgres"
+        ],
+        "last_modified": "2026-06-26T23:04:53.977779"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Spreadsheet/data export files found: audit_trail.xlsx, audit_trail_with_tools_populated_demo_v2.xlsx, audit_trail_with_tools_populated_demo_v3.xlsx",
+        "Multiple AI provider integrations (anthropic, gemini, google.generativeai, openai) \u2014 elevated orchestration complexity.",
+        "Credential pattern indicators in code: api_key, database_url",
+        "External database terms detected (postgres) \u2014 potential data compliance risk.",
+        "Risk level is HIGH, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: requirements.txt",
+        "Container configuration present (Dockerfile / docker-compose).",
+        "HTTP networking libraries in use: httpx",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260626T230454Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Resolve HIGH-risk blocking issues before allowing any agent access."
+    },
+    {
+      "name": "fishhatchery",
+      "full_name": "driaialchemy/fishhatchery",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 60,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "fishhatchery",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/fishhatchery",
+        "is_git_repo": true,
+        "has_gitignore": false,
+        "has_readme": false,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 2,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": false,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "requests"
+        ],
+        "last_modified": "2026-06-26T23:04:54.380862"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Missing .gitignore.",
+        "HTTP networking libraries in use: requests",
+        "Missing README \u2014 project context unavailable to agent.",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy.",
+        "Missing .gitignore \u2014 unintended files may be tracked."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_fishhatchery_20260626T230454Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "governance-logger",
+      "full_name": "driaialchemy/governance-logger",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 100,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "governance-logger",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/governance-logger",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 17,
+        "languages": [
+          "TypeScript",
+          "Python",
+          "JavaScript"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "requests"
+        ],
+        "last_modified": "2026-06-26T23:04:54.838766"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: package.json",
+        "HTTP networking libraries in use: requests",
+        "Test suite present \u2014 actively developed project.",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_governance-logger_20260626T230454Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "jobseeker",
+      "full_name": "driaialchemy/jobseeker",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 80,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "jobseeker",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/jobseeker",
+        "is_git_repo": true,
+        "has_gitignore": false,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 1,
+        "languages": [],
+        "has_tests_dir": false,
+        "artifact_paths": [],
+        "api_terms_found": [],
+        "last_modified": "2026-06-26T23:04:55.202311"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Missing .gitignore.",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy.",
+        "Missing .gitignore \u2014 unintended files may be tracked."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_jobseeker_20260626T230455Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "mavenfuzzyfactory",
+      "full_name": "driaialchemy/mavenfuzzyfactory",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 100,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "mavenfuzzyfactory",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": true,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 52,
+        "languages": [
+          "Python",
+          "SQL"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "requests",
+          "sqlite"
+        ],
+        "last_modified": "2026-06-26T23:04:55.627079"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: pyproject.toml",
+        "CI/CD workflow configuration present (.github/workflows).",
+        "HTTP networking libraries in use: requests",
+        "Test suite present \u2014 actively developed project.",
+        "Missing CLAUDE.md \u2014 no agent policy defined."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_mavenfuzzyfactory_20260626T230455Z.json",
+      "missing_controls": [
+        "CLAUDE.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "mslw111",
+      "full_name": "driaialchemy/mslw111",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 80,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "mslw111",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mslw111",
+        "is_git_repo": true,
+        "has_gitignore": false,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 1,
+        "languages": [],
+        "has_tests_dir": false,
+        "artifact_paths": [],
+        "api_terms_found": [],
+        "last_modified": "2026-06-26T23:04:55.998782"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Missing .gitignore.",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy.",
+        "Missing .gitignore \u2014 unintended files may be tracked."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_mslw111_20260626T230456Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "skillsartifactsbuild",
+      "full_name": "driaialchemy/skillsartifactsbuild",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "LOW",
+      "readiness_score": 90,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "skillsartifactsbuild",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/skillsartifactsbuild",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": true,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 3,
+        "languages": [],
+        "has_tests_dir": false,
+        "artifact_paths": [],
+        "api_terms_found": [],
+        "last_modified": "2026-06-26T23:04:56.363924"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Missing CLAUDE.md.",
+        "Missing CLAUDE.md \u2014 no agent policy defined."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_skillsartifactsbuild_20260626T230456Z.json",
+      "missing_controls": [
+        "CLAUDE.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "testingsoftwareengineering",
+      "full_name": "driaialchemy/testingsoftwareengineering",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "MEDIUM",
+      "readiness_score": 100,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "testingsoftwareengineering",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/testingsoftwareengineering",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 11,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": true,
+        "artifact_paths": [],
+        "api_terms_found": [],
+        "last_modified": "2026-06-26T23:04:56.739884"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Risk level is MEDIUM, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: requirements.txt",
+        "Test suite present \u2014 actively developed project.",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_testingsoftwareengineering_20260626T230456Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "workeragentcowork",
+      "full_name": "driaialchemy/workeragentcowork",
+      "mode": "scan_only",
+      "status": "scanned",
+      "passed": false,
+      "errors": [],
+      "risk_level": "HIGH",
+      "readiness_score": 90,
+      "agent_ready": false,
+      "initial_scan": {
+        "name": "workeragentcowork",
+        "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/workeragentcowork",
+        "is_git_repo": true,
+        "has_gitignore": true,
+        "has_readme": true,
+        "has_claude_md": false,
+        "has_agents_md": false,
+        "has_env_files": false,
+        "env_file_paths": [],
+        "file_count": 26,
+        "languages": [
+          "Python"
+        ],
+        "has_tests_dir": false,
+        "artifact_paths": [],
+        "api_terms_found": [
+          "anthropic",
+          "api_key",
+          "openai",
+          "postgres",
+          "requests",
+          "sqlite"
+        ],
+        "last_modified": "2026-06-26T23:04:57.192990"
+      },
+      "has_claude_md": false,
+      "remaining_issues": [
+        "Multiple AI provider integrations (anthropic, openai) \u2014 elevated orchestration complexity.",
+        "Credential pattern indicators in code: api_key",
+        "External database terms detected (postgres) \u2014 potential data compliance risk.",
+        "Risk level is HIGH, expected LOW.",
+        "Missing CLAUDE.md.",
+        "Dependency manifests present: requirements.txt",
+        "Container configuration present (Dockerfile / docker-compose).",
+        "CI/CD workflow configuration present (.github/workflows).",
+        "HTTP networking libraries in use: requests",
+        "Missing CLAUDE.md \u2014 no agent policy defined.",
+        "Missing AGENTS.md \u2014 no machine-readable safety policy."
+      ],
+      "policy_artifact_status": "recommendations_only",
+      "remediation_status": "not_requested",
+      "verification_status": "scan_only_no_verification_loop",
+      "audit_path": "audit/multi_repo/2026-06-26/repo_workeragentcowork_20260626T230457Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "recommended_action": "Resolve HIGH-risk blocking issues before allowing any agent access."
+    }
+  ],
+  "errors": [],
+  "discovery_warnings": [
+    "No REPO_GOVERNOR_PAT or GITHUB_TOKEN set \u2014 only public repositories will be discovered. Private repos require a token."
+  ],
+  "email_delivery_status": "sent",
+  "email_delivery_message": "Evidence report emailed to ***REDACTED***"
+}
