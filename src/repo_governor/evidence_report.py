@@ -7,6 +7,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .report_analysis import (
+    analyze_scanned_repos,
+    build_executive_narrative,
+    build_prioritized_corrective_actions,
+    build_repo_action_plan,
+)
 from .security import redact_dict, redact_secrets
 
 
@@ -43,151 +49,25 @@ def _missing_controls(result_item: dict[str, Any]) -> list[str]:
 def _recommended_action(result_item: dict[str, Any]) -> str:
     if result_item.get("passed"):
         return "No action required — repository is agent-ready."
-    mode = result_item.get("mode", "scan_only")
-    if result_item.get("risk_level") == "HIGH":
-        return "Resolve HIGH-risk blocking issues before allowing any agent access."
-    if not result_item.get("has_claude_md"):
-        return "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
-    if mode == "scan_only":
-        return "Review audit evidence and run prompt_only or goal_loop when ready to remediate."
-    return "Review remaining issues in the audit file and apply minimal safe fixes."
+    plan = build_repo_action_plan(result_item)
+    if plan["top_corrective_actions"]:
+        return plan["top_corrective_actions"][0]["corrective_action"]
+    if plan["recommended_mode"] == "human_review_first":
+        return "Complete human review before any remediation agent is used."
+    return "Review audit evidence and run prompt_only when ready to remediate."
 
 
-def _build_corrective_actions(
-    run: Any,
-    scanned: list[dict[str, Any]],
-    clone_failed: list[dict[str, Any]],
-    scan_failed: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    """Build corrective and verifiable action items for failed or incomplete checks."""
-    actions: list[dict[str, Any]] = []
-
+def _risk_level_counts(scanned: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {"HIGH": 0, "MEDIUM": 0, "LOW": 0}
     for item in scanned:
-        if item.get("passed"):
-            continue
-        repo_name = item.get("full_name", item.get("name", "unknown"))
-        for issue in item.get("remaining_issues") or ["Agent-readiness check failed"]:
-            actions.append({
-                "repo": repo_name,
-                "issue": issue,
-                "why_it_matters": (
-                    "Autonomous coding agents can make unsafe changes when governance "
-                    "controls are missing or risk is elevated."
-                ),
-                "corrective_action": item.get("recommended_action", "Review audit evidence and remediate."),
-                "verification_action": (
-                    "Re-run `repo-governor weekly-evidence --mode scan_only` and confirm "
-                    "agent-ready PASS for this repository."
-                ),
-                "expected_evidence": (
-                    f"Updated audit file with PASS status: {item.get('audit_path', 'n/a')}"
-                ),
-                "recommended_mode": "prompt_only",
-                "human_review_required": item.get("risk_level") == "HIGH",
-            })
-
-    for item in clone_failed:
-        repo_name = item.get("full_name", item.get("name", "unknown"))
-        technical_detail = None
-        for raw_issue in item.get("errors") or []:
-            technical_detail = redact_secrets(str(raw_issue))
-            break
-        action = {
-            "repo": repo_name,
-            "issue": "The repository could not be cloned into the workflow workspace.",
-            "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
-            "corrective_action": (
-                "Verify clone URL, branch name, token access, and GitHub Actions permissions; "
-                "then rerun the workflow."
-            ),
-            "verification_action": (
-                "Confirm the next evidence report shows the repo status as scanned_successfully."
-            ),
-            "expected_evidence": "Per-repo audit JSON exists and contains scan results.",
-            "recommended_mode": run.mode,
-            "human_review_required": True,
-        }
-        if technical_detail:
-            action["technical_detail"] = technical_detail
-        actions.append(action)
-
-    for item in scan_failed:
-        repo_name = item.get("full_name", item.get("name", "unknown"))
-        for raw_issue in item.get("errors") or ["Repository scan failed"]:
-            issue_text = redact_secrets(str(raw_issue))
-            if "not a directory" in issue_text.lower():
-                user_issue = "The repository could not be scanned after checkout."
-            else:
-                user_issue = issue_text
-            actions.append({
-                "repo": repo_name,
-                "issue": user_issue,
-                "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
-                "corrective_action": (
-                    "Review the audit evidence and repository layout; fix blocking issues "
-                    "and rerun the weekly evidence workflow."
-                ),
-                "verification_action": (
-                    "Confirm the next evidence report shows the repo status as scanned_successfully."
-                ),
-                "expected_evidence": "Per-repo audit JSON exists and contains scan results.",
-                "recommended_mode": run.mode,
-                "human_review_required": True,
-                "technical_detail": issue_text if user_issue != issue_text else None,
-            })
-
-    if run.mode == "scan_only" and actions:
-        for action in actions:
-            action.setdefault(
-                "note",
-                "Weekly scan_only mode reports findings only — target repos are not modified automatically.",
-            )
-            if action.get("technical_detail") is None:
-                action.pop("technical_detail", None)
-
-    return actions
-
-
-def _format_corrective_actions_md(actions: list[dict[str, Any]]) -> list[str]:
-    if not actions:
-        return []
-    lines = ["## Corrective and Verifiable Actions", ""]
-    for idx, action in enumerate(actions, start=1):
-        lines += [
-            f"### {idx}. {action.get('repo', 'unknown')}",
-            "",
-            f"- **Issue:** {action.get('issue')}",
-            f"- **Why it matters:** {action.get('why_it_matters')}",
-            f"- **Corrective action:** {action.get('corrective_action')}",
-            f"- **Verification action:** {action.get('verification_action')}",
-            f"- **Expected evidence:** {action.get('expected_evidence')}",
-            f"- **Recommended mode:** {action.get('recommended_mode')}",
-            f"- **Human review required:** {'Yes' if action.get('human_review_required') else 'No'}",
-        ]
-        if action.get("note"):
-            lines.append(f"- **Note:** {action['note']}")
-        if action.get("technical_detail"):
-            lines.append(f"- **Technical detail:** {action['technical_detail']}")
-        lines.append("")
-    return lines
-
-
-def _format_corrective_actions_txt(actions: list[dict[str, Any]]) -> list[str]:
-    if not actions:
-        return []
-    lines = ["Corrective and Verifiable Actions", ""]
-    for idx, action in enumerate(actions, start=1):
-        lines += [
-            f"{idx}. {action.get('repo', 'unknown')}",
-            f"   Issue: {action.get('issue')}",
-            f"   Corrective action: {action.get('corrective_action')}",
-            f"   Verification: {action.get('verification_action')}",
-            f"   Expected evidence: {action.get('expected_evidence')}",
-            f"   Recommended mode: {action.get('recommended_mode')}",
-            f"   Human review required: {'Yes' if action.get('human_review_required') else 'No'}",
-            "",
-        ]
-    return lines
+        level = (item.get("risk_level") or "LOW").upper()
+        if level in counts:
+            counts[level] += 1
+    return {
+        "total_high_risk": counts["HIGH"],
+        "total_medium_risk": counts["MEDIUM"],
+        "total_low_risk": counts["LOW"],
+    }
 
 
 def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
@@ -197,16 +77,19 @@ def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
     needs_work = [r for r in scanned if not r.get("passed")]
     clone_failed = [r for r in run.repo_results if r.get("status") == "clone_failed"]
     scan_failed = [r for r in run.repo_results if r.get("status") == "scan_failed"]
-    # Legacy runs may still use status "failed"
     legacy_failed = [
         r for r in run.repo_results
         if r.get("status") == "failed" and r not in clone_failed + scan_failed
     ]
     scan_failed = scan_failed + legacy_failed
     eligible = len(run.repo_results)
-    corrective_actions = _build_corrective_actions(run, scanned, clone_failed, scan_failed)
+    risk_counts = _risk_level_counts(scanned)
+    analysis = analyze_scanned_repos(scanned)
+    corrective_actions = build_prioritized_corrective_actions(
+        run, scanned, clone_failed, scan_failed
+    )
 
-    return {
+    summary = {
         "run_id": run.run_id,
         "report_timestamp": run.timestamp,
         "github_owner": run.github_owner,
@@ -219,15 +102,115 @@ def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
         "total_skipped": len(run.skipped_repos),
         "total_passed": len(passed),
         "total_needs_work": len(needs_work),
+        **risk_counts,
         "skipped_repos": run.skipped_repos,
         "repo_results": run.repo_results,
         "corrective_actions": corrective_actions,
+        "repo_action_plans": analysis["repo_action_plans"],
+        "remediation_order": analysis["remediation_order"],
+        "top_portfolio_issues": analysis["top_portfolio_issues"],
         "errors": [redact_secrets(e) for e in run.errors],
         "discovery_warnings": [redact_secrets(w) for w in run.discovery_warnings],
         "email_delivery_status": run.email_delivery_status,
         "email_delivery_message": redact_secrets(run.email_delivery_message),
         "audit_summary_path": run.audit_summary_path,
     }
+    summary["executive_narrative"] = build_executive_narrative(run, scanned, summary)
+    return summary
+
+
+def _format_remediation_order_md(order: dict[str, list[str]]) -> list[str]:
+    if not any(order.values()):
+        return []
+    lines = ["## Recommended Remediation Order", ""]
+    sections = [
+        ("start_here", "Start here (low-risk, simple documentation fixes)"),
+        ("next", "Next (medium-risk or missing agent policy files)"),
+        ("human_review_first", "Human review first (high-risk, credentials, AI, databases, CI/CD, containers)"),
+    ]
+    for key, title in sections:
+        repos = order.get(key) or []
+        if not repos:
+            continue
+        lines.append(f"### {title}")
+        lines.append("")
+        for name in repos:
+            lines.append(f"- {name}")
+        lines.append("")
+    return lines
+
+
+def _format_remediation_order_txt(order: dict[str, list[str]]) -> list[str]:
+    lines: list[str] = []
+    if not any(order.values()):
+        return lines
+    lines += ["Recommended Remediation Order", ""]
+    for key, title in [
+        ("start_here", "Start here"),
+        ("next", "Next"),
+        ("human_review_first", "Human review first"),
+    ]:
+        repos = order.get(key) or []
+        if repos:
+            lines.append(f"{title}: {', '.join(repos)}")
+    lines.append("")
+    return lines
+
+
+def _format_repo_action_plans_md(plans: list[dict[str, Any]]) -> list[str]:
+    if not plans:
+        return []
+    lines = ["## Per-Repo Action Plans", ""]
+    for plan in sorted(plans, key=lambda p: (p.get("agent_ready"), p.get("repo", ""))):
+        lines += [
+            f"### {plan['repo']}",
+            "",
+            f"- **Risk:** {plan.get('risk', 'unknown')}",
+            f"- **Agent-ready:** {'PASS' if plan.get('agent_ready') else 'FAIL'}",
+            f"- **Recommended mode:** {plan.get('recommended_mode', 'scan_only')}",
+            f"- **Human review required:** {'Yes' if plan.get('human_review_required') else 'No'}",
+        ]
+        actions = plan.get("top_corrective_actions") or []
+        if actions:
+            lines.append("- **Top corrective actions:**")
+            for idx, action in enumerate(actions[:5], start=1):
+                lines.append(f"  {idx}. {action['title']}")
+                lines.append(f"     - {action['corrective_action']}")
+        signals = plan.get("risk_signals") or []
+        if signals:
+            lines.append("- **Risk signals (context, not automatic defects):**")
+            for signal in signals[:5]:
+                lines.append(f"  - {signal['label']}")
+                lines.append(f"    - {signal['governance_implication']}")
+        verification = plan.get("verification_steps") or []
+        if verification:
+            lines.append("- **Verification steps:**")
+            for step in verification[:3]:
+                lines.append(f"  - {step}")
+        if plan.get("audit_path"):
+            lines.append(f"- **Audit file:** `{plan['audit_path']}`")
+        lines.append("")
+    return lines
+
+
+def _format_repo_action_plans_txt(plans: list[dict[str, Any]]) -> list[str]:
+    if not plans:
+        return []
+    lines = ["Per-Repo Action Plans", ""]
+    for plan in sorted(plans, key=lambda p: (p.get("agent_ready"), p.get("repo", ""))):
+        lines += [
+            f"Repo: {plan['repo']}",
+            f"  Risk: {plan.get('risk')}",
+            f"  Agent-ready: {'PASS' if plan.get('agent_ready') else 'FAIL'}",
+            f"  Recommended mode: {plan.get('recommended_mode')}",
+            f"  Human review required: {'Yes' if plan.get('human_review_required') else 'No'}",
+        ]
+        for idx, action in enumerate((plan.get("top_corrective_actions") or [])[:5], start=1):
+            lines.append(f"  {idx}. {action['title']}: {action['corrective_action']}")
+        for signal in (plan.get("risk_signals") or [])[:3]:
+            lines.append(f"  Risk signal: {signal['label']} — {signal['governance_implication']}")
+        lines.append("")
+    return lines
 
 
 def _novice_summary(run: Any, summary: dict[str, Any]) -> str:
@@ -235,8 +218,6 @@ def _novice_summary(run: Any, summary: dict[str, Any]) -> str:
     eligible = summary["total_eligible"]
     scanned = summary["total_scanned"]
     skipped = summary["total_skipped"]
-    passed = summary["total_passed"]
-    needs_work = summary["total_needs_work"]
     clone_failed = summary["total_clone_failed"]
     scan_failed = summary["total_scan_failed"]
 
@@ -252,14 +233,9 @@ def _novice_summary(run: Any, summary: dict[str, Any]) -> str:
         lines.append(
             f"{clone_failed} could not be cloned and {scan_failed} failed during scanning."
         )
-    if scanned:
-        lines.append(
-            f"Of the scanned repositories, {passed} passed agent-readiness checks and "
-            f"{needs_work} need additional governance work before an autonomous coding agent "
-            f"should be allowed to make changes."
-        )
-    elif not clone_failed and not scan_failed:
-        lines.append("No repositories were scanned in this run.")
+
+    lines.append("")
+    lines.append(summary.get("executive_narrative", ""))
 
     if run.discovery_warnings:
         lines.append("")
@@ -308,13 +284,25 @@ def generate_evidence_reports(
         f"- Repositories discovered: {summary['total_discovered']}",
         f"- Repositories eligible: {summary['total_eligible']}",
         f"- Repositories scanned successfully: {summary['total_scanned']}",
+        f"- Agent-ready (passed): {summary['total_passed']}",
+        f"- Need governance work: {summary['total_needs_work']}",
+        f"- High-risk repositories: {summary['total_high_risk']}",
+        f"- Medium-risk repositories: {summary['total_medium_risk']}",
+        f"- Low-risk repositories: {summary['total_low_risk']}",
         f"- Clone failures: {summary['total_clone_failed']}",
         f"- Scan failures: {summary['total_scan_failed']}",
         f"- Repositories skipped: {summary['total_skipped']}",
-        f"- Agent-ready (passed): {summary['total_passed']}",
-        f"- Need governance work: {summary['total_needs_work']}",
         "",
     ]
+
+    top_issues = summary.get("top_portfolio_issues") or []
+    if top_issues:
+        md_lines += ["## Top Portfolio-Wide Issues", ""]
+        for item in top_issues:
+            md_lines.append(f"- {item['repo_count']} repos: {item['issue']}")
+        md_lines.append("")
+
+    md_lines += _format_remediation_order_md(summary.get("remediation_order") or {})
 
     if run.skipped_repos:
         md_lines += ["## Skipped Repositories", ""]
@@ -323,40 +311,13 @@ def generate_evidence_reports(
             md_lines.append(f"- **{item.get('name')}** — {reason}")
         md_lines.append("")
 
-    scanned = [r for r in run.repo_results if r.get("status") == "scanned"]
     clone_failed = [r for r in run.repo_results if r.get("status") == "clone_failed"]
     scan_failed = [
         r for r in run.repo_results
         if r.get("status") in ("scan_failed", "failed")
     ]
-    corrective_actions = summary.get("corrective_actions") or []
 
-    if scanned:
-        md_lines += ["## Repository Details", ""]
-        for item in scanned:
-            md_lines += [
-                f"### {item.get('full_name', item.get('name'))}",
-                "",
-                f"- **Risk level:** {item.get('risk_level', 'unknown')}",
-                f"- **Agent-ready:** {'PASS' if item.get('passed') else 'FAIL'}",
-                f"- **Readiness score:** {item.get('readiness_score', 'n/a')}/100",
-                f"- **Mode:** {item.get('mode', run.mode)}",
-                f"- **CLAUDE.md:** {'present' if item.get('has_claude_md') else 'missing'}",
-                f"- **Policy artifacts:** {item.get('policy_artifact_status', 'none')}",
-                f"- **Remediation status:** {item.get('remediation_status', 'n/a')}",
-                f"- **Verification status:** {item.get('verification_status', 'n/a')}",
-                f"- **Audit file:** `{item.get('audit_path', 'n/a')}`",
-            ]
-            missing = item.get("missing_controls") or []
-            if missing:
-                md_lines.append(f"- **Missing controls:** {', '.join(missing)}")
-            remaining = item.get("remaining_issues") or []
-            if remaining:
-                md_lines.append("- **Remaining issues:**")
-                for issue in remaining[:5]:
-                    md_lines.append(f"  - {issue}")
-            md_lines.append(f"- **Recommended next action:** {item.get('recommended_action', 'Review audit.')}")
-            md_lines.append("")
+    md_lines += _format_repo_action_plans_md(summary.get("repo_action_plans") or [])
 
     if clone_failed or scan_failed:
         md_lines += ["## Failed Repositories", ""]
@@ -367,11 +328,20 @@ def generate_evidence_reports(
                 "",
                 f"- **Status:** {status_label}",
             ]
+            if item.get("status") == "clone_failed":
+                md_lines += [
+                    "- **Issue:** The repository could not be cloned into the workflow workspace.",
+                    "- **Corrective action:** Verify clone URL, branch name, token access, and "
+                    "GitHub Actions permissions; then rerun the workflow.",
+                    "- **Verification action:** Confirm the next evidence report shows the repo "
+                    "status as scanned_successfully.",
+                ]
             for err in item.get("errors") or []:
-                md_lines.append(f"- **Error:** {redact_secrets(str(err))}")
+                if item.get("status") != "clone_failed":
+                    md_lines.append(f"- **Error:** {redact_secrets(str(err))}")
+                else:
+                    md_lines.append(f"- **Technical detail:** {redact_secrets(str(err))}")
             md_lines.append("")
-
-    md_lines += _format_corrective_actions_md(corrective_actions)
 
     txt_lines = [
         "AIAlchemy Repo Governor — Weekly Evidence Report",
@@ -384,13 +354,24 @@ def generate_evidence_reports(
         f"Discovered: {summary['total_discovered']}",
         f"Eligible: {summary['total_eligible']}",
         f"Scanned: {summary['total_scanned']}",
+        f"Passed: {summary['total_passed']}",
+        f"Needs work: {summary['total_needs_work']}",
+        f"High risk: {summary['total_high_risk']}",
+        f"Medium risk: {summary['total_medium_risk']}",
+        f"Low risk: {summary['total_low_risk']}",
         f"Clone failed: {summary['total_clone_failed']}",
         f"Scan failed: {summary['total_scan_failed']}",
         f"Skipped: {summary['total_skipped']}",
-        f"Passed: {summary['total_passed']}",
-        f"Needs work: {summary['total_needs_work']}",
         "",
     ]
+
+    if top_issues:
+        txt_lines.append("Top portfolio-wide issues:")
+        for item in top_issues:
+            txt_lines.append(f"  - {item['repo_count']} repos: {item['issue']}")
+        txt_lines.append("")
+
+    txt_lines += _format_remediation_order_txt(summary.get("remediation_order") or [])
 
     if run.skipped_repos:
         txt_lines.append("Skipped repositories:")
@@ -398,19 +379,7 @@ def generate_evidence_reports(
             txt_lines.append(f"  - {item.get('name')}: {item.get('skip_reason', 'unknown')}")
         txt_lines.append("")
 
-    for item in scanned:
-        txt_lines += [
-            f"Repo: {item.get('full_name', item.get('name'))}",
-            f"  Risk: {item.get('risk_level')}",
-            f"  Agent-ready: {'PASS' if item.get('passed') else 'FAIL'}",
-            f"  CLAUDE.md: {'yes' if item.get('has_claude_md') else 'no'}",
-            f"  Remediation: {item.get('remediation_status', 'n/a')}",
-            f"  Audit: {item.get('audit_path', 'n/a')}",
-            f"  Next action: {item.get('recommended_action', 'Review audit.')}",
-            "",
-        ]
-
-    txt_lines += _format_corrective_actions_txt(corrective_actions)
+    txt_lines += _format_repo_action_plans_txt(summary.get("repo_action_plans") or [])
 
     markdown_path = output_dir / "evidence-summary.md"
     text_path = output_dir / "evidence-summary.txt"
@@ -432,4 +401,6 @@ def enrich_repo_result_for_report(result_item: dict[str, Any]) -> dict[str, Any]
     """Add report-friendly fields to a per-repo result dict."""
     result_item["missing_controls"] = _missing_controls(result_item)
     result_item["recommended_action"] = _recommended_action(result_item)
+    plan = build_repo_action_plan(result_item)
+    result_item["action_plan"] = plan
     return result_item

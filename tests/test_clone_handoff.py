@@ -285,7 +285,7 @@ def test_clone_failure_user_facing_issue_not_not_a_directory(tmp_path):
     paths = generate_evidence_reports(run, output_root=tmp_path / "reports")
     md = paths.markdown_path.read_text(encoding="utf-8")
     assert "could not be cloned into the workflow workspace" in md
-    assert "Not a directory" not in md.split("Issue:")[1].split("Why it matters")[0]
+    assert "Not a directory" not in md.split("Issue:")[1].split("Corrective action")[0]
 
 
 def test_credential_urls_redacted_in_clone_failure_report(tmp_path):

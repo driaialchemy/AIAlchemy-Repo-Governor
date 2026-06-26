@@ -84,7 +84,7 @@ def test_corrective_actions_in_evidence_report(tmp_path):
     md = paths.markdown_path.read_text(encoding="utf-8")
     txt = paths.text_path.read_text(encoding="utf-8")
     data = json.loads(paths.json_path.read_text(encoding="utf-8"))
-    assert "Corrective and Verifiable Actions" in md
-    assert "Corrective and Verifiable Actions" in txt
+    assert "Per-Repo Action Plans" in md
+    assert "Per-Repo Action Plans" in txt
     assert data["corrective_actions"]
     assert "github_pat" not in md
