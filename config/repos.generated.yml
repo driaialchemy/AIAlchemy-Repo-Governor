@@ -1,9 +1,18 @@
-generated_at: '2026-06-25T23:25:16+00:00'
+generated_at: '2026-07-02T23:47:21+00:00'
 repos:
 - name: Agent-Workflow-Review
   full_name: driaialchemy/Agent-Workflow-Review
   url: https://github.com/driaialchemy/Agent-Workflow-Review.git
   branch: master
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: agentstack
+  full_name: driaialchemy/agentstack
+  url: https://github.com/driaialchemy/agentstack.git
+  branch: main
   enabled: true
   mode: scan_only
   visibility: public
