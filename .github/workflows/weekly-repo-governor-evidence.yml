@@ -32,6 +32,7 @@ jobs:
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       SMTP_USE_TLS: ${{ secrets.SMTP_USE_TLS }}
       REPO_GOVERNOR_PAT: ${{ secrets.REPO_GOVERNOR_PAT }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -45,12 +46,16 @@ jobs:
       - name: Install dependencies
         run: pip install -e .
 
+      - name: Prepare clone workspace
+        run: mkdir -p "${{ github.workspace }}/workspace/repos"
+
       - name: Run multi-repo governance check
         run: |
           python -m repo_governor.multi_repo_runner \
             --owner driaialchemy \
             --discover \
             --mode "${{ github.event.inputs.mode || 'scan_only' }}" \
+            --workspace "${{ github.workspace }}/workspace/repos" \
             --send-email
 
       - name: Commit evidence reports

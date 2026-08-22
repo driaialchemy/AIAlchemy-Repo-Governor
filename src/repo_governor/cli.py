@@ -199,12 +199,17 @@ def cmd_weekly_evidence(args: argparse.Namespace) -> int:
         return 1
 
     scanned = len([r for r in result.repo_results if r.get("status") == "scanned"])
+    clone_failed = len([r for r in result.repo_results if r.get("status") == "clone_failed"])
+    scan_failed = len([r for r in result.repo_results if r.get("status") == "scan_failed"])
     passed = len([r for r in result.repo_results if r.get("passed")])
     print(f"\nWeekly evidence run: {result.run_id}")
     print(f"GitHub owner:        {result.github_owner}")
     print(f"Mode:                {result.mode}")
     print(f"Discovered:          {result.total_discovered}")
+    print(f"Eligible:            {len(result.repo_results)}")
     print(f"Scanned:             {scanned}")
+    print(f"Clone failed:        {clone_failed}")
+    print(f"Scan failed:         {scan_failed}")
     print(f"Skipped:             {len(result.skipped_repos)}")
     print(f"Agent-ready passed:  {passed}")
     print(f"Email status:        {result.email_delivery_status}")
