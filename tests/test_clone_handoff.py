@@ -59,7 +59,7 @@ def _git_available() -> bool:
 def _init_local_git_repo(source: Path) -> Path:
     source.mkdir(parents=True, exist_ok=True)
     (source / "README.md").write_text("# Source\n", encoding="utf-8")
-    (source / ".gitignore").write_text("*\n", encoding="utf-8")
+    (source / ".gitignore").write_text(".venv/\n", encoding="utf-8")
     subprocess.run(["git", "init", "-b", "main"], cwd=source, check=True, capture_output=True)
     subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=source, check=True, capture_output=True)
     subprocess.run(["git", "config", "user.name", "Test"], cwd=source, check=True, capture_output=True)
@@ -323,9 +323,10 @@ def test_clone_failure_user_facing_issue_not_not_a_directory(tmp_path):
     )
     paths = generate_evidence_reports(run, output_root=tmp_path / "reports")
     md = paths.markdown_path.read_text(encoding="utf-8")
-    issue_block = md.split("**Issue:**", 1)[1].split("**Why it matters**", 1)[0]
-    assert "could not be cloned into the workflow workspace" in issue_block
-    assert "Not a directory" not in issue_block
+    issue_lines = [line for line in md.splitlines() if line.startswith("- **Issue:**")]
+    assert issue_lines
+    assert any("could not be cloned into the workflow workspace" in line for line in issue_lines)
+    assert all("Not a directory" not in line for line in issue_lines)
 
 
 def test_credential_urls_redacted_in_clone_failure_report(tmp_path):
