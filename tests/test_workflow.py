@@ -38,3 +38,15 @@ def test_workflow_weekly_schedule_phoenix():
 def test_workflow_send_email_flag():
     text = WORKFLOW_PATH.read_text(encoding="utf-8")
     assert "--send-email" in text
+
+
+def test_workflow_uses_absolute_clone_workspace():
+    text = WORKFLOW_PATH.read_text(encoding="utf-8")
+    assert "--workspace" in text
+    assert "github.workspace" in text
+    assert "workspace/repos" in text
+
+
+def test_workflow_exports_github_token_for_public_discovery():
+    text = WORKFLOW_PATH.read_text(encoding="utf-8")
+    assert "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}" in text
