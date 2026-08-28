@@ -1,0 +1,97 @@
+{
+  "repo": "driaialchemy/expenseverificationpipeline",
+  "mode": "scan_only",
+  "timestamp": "2026-08-28T06:22:48+00:00",
+  "initial_scan": {
+    "name": "expenseverificationpipeline",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/expenseverificationpipeline",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": true,
+    "has_agents_md": false,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 33,
+    "languages": [
+      "Python",
+      "SQL"
+    ],
+    "has_tests_dir": true,
+    "artifact_paths": [
+      "sample_expenses.xlsx"
+    ],
+    "api_terms_found": [
+      "anthropic",
+      "api_key"
+    ],
+    "last_modified": "2026-08-28T06:22:48.163902"
+  },
+  "risk_classification": {
+    "risk_level": "HIGH",
+    "readiness_score": 85,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Spreadsheet/data export files found: sample_expenses.xlsx",
+      "External AI API usage: anthropic \u2014 API key management required.",
+      "Credential pattern indicators in code: api_key",
+      "Dependency manifests present: pyproject.toml",
+      "Test suite present \u2014 actively developed project.",
+      "Missing AGENTS.md \u2014 no machine-readable safety policy."
+    ],
+    "blocking_issues": [
+      "Spreadsheet/data export files found: sample_expenses.xlsx",
+      "External AI API usage: anthropic \u2014 API key management required.",
+      "Credential pattern indicators in code: api_key"
+    ],
+    "recommended_actions": [
+      "Remove data export files from the repository and add patterns to .gitignore.",
+      "Document required API keys in .env.example; ensure keys are never committed.",
+      "Audit source code for hardcoded credentials and replace with environment variables.",
+      "Run a dependency audit before starting an agent session.",
+      "Run the test suite before and after any agent session.",
+      "Add AGENTS.md defining permitted agent behaviors."
+    ],
+    "scan": {
+      "name": "expenseverificationpipeline",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/expenseverificationpipeline",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": true,
+      "has_agents_md": false,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 33,
+      "languages": [
+        "Python",
+        "SQL"
+      ],
+      "has_tests_dir": true,
+      "artifact_paths": [
+        "sample_expenses.xlsx"
+      ],
+      "api_terms_found": [
+        "anthropic",
+        "api_key"
+      ],
+      "last_modified": "2026-08-28T06:22:48.163902"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Spreadsheet/data export files found: sample_expenses.xlsx",
+    "External AI API usage: anthropic \u2014 API key management required.",
+    "Credential pattern indicators in code: api_key",
+    "Risk level is HIGH, expected LOW.",
+    "Dependency manifests present: pyproject.toml",
+    "Test suite present \u2014 actively developed project.",
+    "Missing AGENTS.md \u2014 no machine-readable safety policy."
+  ],
+  "errors": []
+}

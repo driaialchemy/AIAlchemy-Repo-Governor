@@ -1,0 +1,93 @@
+{
+  "repo": "driaialchemy/contractriskreviewpipeline",
+  "mode": "scan_only",
+  "timestamp": "2026-08-28T06:22:26+00:00",
+  "initial_scan": {
+    "name": "contractriskreviewpipeline",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": true,
+    "has_agents_md": true,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 40,
+    "languages": [
+      "Python"
+    ],
+    "has_tests_dir": true,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "anthropic",
+      "api_key",
+      "gemini",
+      "openai",
+      "requests"
+    ],
+    "last_modified": "2026-08-28T06:22:26.678052"
+  },
+  "risk_classification": {
+    "risk_level": "HIGH",
+    "readiness_score": 100,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Multiple AI provider integrations (anthropic, gemini, openai) \u2014 elevated orchestration complexity.",
+      "Credential pattern indicators in code: api_key",
+      "Dependency manifests present: pyproject.toml",
+      "HTTP networking libraries in use: requests",
+      "Test suite present \u2014 actively developed project."
+    ],
+    "blocking_issues": [
+      "Multiple AI provider integrations (anthropic, gemini, openai) \u2014 elevated orchestration complexity.",
+      "Credential pattern indicators in code: api_key"
+    ],
+    "recommended_actions": [
+      "Document required API keys in .env.example; ensure keys are never committed.",
+      "Audit source code for hardcoded credentials and replace with environment variables.",
+      "Run a dependency audit before starting an agent session.",
+      "Document external API endpoints in README to give agents accurate context.",
+      "Run the test suite before and after any agent session."
+    ],
+    "scan": {
+      "name": "contractriskreviewpipeline",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": true,
+      "has_agents_md": true,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 40,
+      "languages": [
+        "Python"
+      ],
+      "has_tests_dir": true,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "anthropic",
+        "api_key",
+        "gemini",
+        "openai",
+        "requests"
+      ],
+      "last_modified": "2026-08-28T06:22:26.678052"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Multiple AI provider integrations (anthropic, gemini, openai) \u2014 elevated orchestration complexity.",
+    "Credential pattern indicators in code: api_key",
+    "Risk level is HIGH, expected LOW.",
+    "Dependency manifests present: pyproject.toml",
+    "HTTP networking libraries in use: requests",
+    "Test suite present \u2014 actively developed project."
+  ],
+  "errors": []
+}

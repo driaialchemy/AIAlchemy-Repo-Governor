@@ -1,4 +1,4 @@
-generated_at: '2026-08-20T23:07:49+00:00'
+generated_at: '2026-08-28T06:22:22+00:00'
 repos:
 - name: Agent-Workflow-Review
   full_name: driaialchemy/Agent-Workflow-Review
@@ -75,6 +75,15 @@ repos:
 - name: Device-Lifecycle-Intelligence-Platform-DLIP-
   full_name: driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
   url: https://github.com/driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: expenseverificationpipeline
+  full_name: driaialchemy/expenseverificationpipeline
+  url: https://github.com/driaialchemy/expenseverificationpipeline.git
   branch: main
   enabled: true
   mode: scan_only
