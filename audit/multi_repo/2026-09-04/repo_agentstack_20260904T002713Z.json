@@ -1,0 +1,76 @@
+{
+  "repo": "driaialchemy/agentstack",
+  "mode": "scan_only",
+  "timestamp": "2026-09-04T00:27:13+00:00",
+  "initial_scan": {
+    "name": "agentstack",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/agentstack",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": true,
+    "has_agents_md": true,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 619,
+    "languages": [
+      "Python"
+    ],
+    "has_tests_dir": true,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "sqlite"
+    ],
+    "last_modified": "2026-09-04T00:27:13.899705"
+  },
+  "risk_classification": {
+    "risk_level": "MEDIUM",
+    "readiness_score": 100,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Dependency manifests present: requirements.txt",
+      "Test suite present \u2014 actively developed project.",
+      "Large file count (619 files) \u2014 broad agent scope increases risk of unintended changes."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Run a dependency audit before starting an agent session.",
+      "Run the test suite before and after any agent session.",
+      "Consider scoping agent access to specific subdirectories."
+    ],
+    "scan": {
+      "name": "agentstack",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/agentstack",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": true,
+      "has_agents_md": true,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 619,
+      "languages": [
+        "Python"
+      ],
+      "has_tests_dir": true,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "sqlite"
+      ],
+      "last_modified": "2026-09-04T00:27:13.899705"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Risk level is MEDIUM, expected LOW.",
+    "Dependency manifests present: requirements.txt",
+    "Test suite present \u2014 actively developed project.",
+    "Large file count (619 files) \u2014 broad agent scope increases risk of unintended changes."
+  ],
+  "errors": []
+}
