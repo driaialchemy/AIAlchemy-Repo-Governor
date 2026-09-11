@@ -1,4 +1,4 @@
-generated_at: '2026-09-04T00:27:12+00:00'
+generated_at: '2026-09-11T00:35:47+00:00'
 repos:
 - name: Agent-Workflow-Review
   full_name: driaialchemy/Agent-Workflow-Review
@@ -72,6 +72,15 @@ repos:
   visibility: public
   archived: false
   fork: false
+- name: deterministic-intake-agent
+  full_name: driaialchemy/deterministic-intake-agent
+  url: https://github.com/driaialchemy/deterministic-intake-agent.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
 - name: Device-Lifecycle-Intelligence-Platform-DLIP-
   full_name: driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
   url: https://github.com/driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-.git
@@ -129,6 +138,15 @@ repos:
 - name: mslw111
   full_name: driaialchemy/mslw111
   url: https://github.com/driaialchemy/mslw111.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: realestateprospectingapp
+  full_name: driaialchemy/realestateprospectingapp
+  url: https://github.com/driaialchemy/realestateprospectingapp.git
   branch: main
   enabled: true
   mode: scan_only
