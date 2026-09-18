@@ -83,6 +83,7 @@ def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
     ]
     scan_failed = scan_failed + legacy_failed
     eligible = len(run.repo_results)
+    unattempted = max(run.total_discovered - len(run.skipped_repos) - eligible, 0)
     risk_counts = _risk_level_counts(scanned)
     analysis = analyze_scanned_repos(scanned)
     corrective_actions = build_prioritized_corrective_actions(
@@ -99,6 +100,7 @@ def summarize_multi_repo_results(run: Any) -> dict[str, Any]:
         "total_scanned": len(scanned),
         "total_clone_failed": len(clone_failed),
         "total_scan_failed": len(scan_failed),
+        "total_unattempted": unattempted,
         "total_skipped": len(run.skipped_repos),
         "total_passed": len(passed),
         "total_needs_work": len(needs_work),
@@ -220,6 +222,7 @@ def _novice_summary(run: Any, summary: dict[str, Any]) -> str:
     skipped = summary["total_skipped"]
     clone_failed = summary["total_clone_failed"]
     scan_failed = summary["total_scan_failed"]
+    unattempted = summary["total_unattempted"]
 
     lines = [
         (
@@ -232,6 +235,11 @@ def _novice_summary(run: Any, summary: dict[str, Any]) -> str:
     if clone_failed or scan_failed:
         lines.append(
             f"{clone_failed} could not be cloned and {scan_failed} failed during scanning."
+        )
+    if unattempted:
+        lines.append(
+            f"{unattempted} eligible repositories were not attempted. Treat this as a "
+            "failed governance run and inspect the workflow logs before trusting the report."
         )
 
     lines.append("")
@@ -291,6 +299,7 @@ def generate_evidence_reports(
         f"- Low-risk repositories: {summary['total_low_risk']}",
         f"- Clone failures: {summary['total_clone_failed']}",
         f"- Scan failures: {summary['total_scan_failed']}",
+        f"- Unattempted eligible repositories: {summary['total_unattempted']}",
         f"- Repositories skipped: {summary['total_skipped']}",
         "",
     ]
@@ -361,6 +370,7 @@ def generate_evidence_reports(
         f"Low risk: {summary['total_low_risk']}",
         f"Clone failed: {summary['total_clone_failed']}",
         f"Scan failed: {summary['total_scan_failed']}",
+        f"Unattempted eligible: {summary['total_unattempted']}",
         f"Skipped: {summary['total_skipped']}",
         "",
     ]

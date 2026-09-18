@@ -265,6 +265,28 @@ def test_report_accounting_reflects_failures_not_zero_scanned_zero_skipped(tmp_p
     assert data["total_clone_failed"] == 1
 
 
+def test_report_flags_discovered_repos_that_were_never_attempted(tmp_path):
+    run = MultiRepoRunResult(
+        run_id="run-1",
+        timestamp="2026-07-23T23:42:40+00:00",
+        report_date="2026-07-23",
+        github_owner="driaialchemy",
+        mode="scan_only",
+        total_discovered=17,
+        repo_results=[],
+        skipped_repos=[],
+    )
+
+    summary = summarize_multi_repo_results(run)
+    paths = generate_evidence_reports(run, output_root=tmp_path / "reports")
+    txt = paths.text_path.read_text(encoding="utf-8")
+    data = json.loads(paths.json_path.read_text(encoding="utf-8"))
+
+    assert summary["total_unattempted"] == 17
+    assert data["total_unattempted"] == 17
+    assert "17 eligible repositories were not attempted" in txt
+
+
 def test_clone_failure_user_facing_issue_not_not_a_directory(tmp_path):
     run = MultiRepoRunResult(
         run_id="run-1",

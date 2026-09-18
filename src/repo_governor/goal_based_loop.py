@@ -105,6 +105,8 @@ def _classified_repo_to_dict(cr: ClassifiedRepo) -> dict[str, Any]:
         "risk_reasons": cr.risk_reasons,
         "blocking_issues": cr.blocking_issues,
         "recommended_actions": cr.recommended_actions,
+        "decision_taxonomy": cr.decision_taxonomy or None,
+        "governance_status": cr.governance_status or None,
         "scan": _repo_info_to_dict(cr.repo),
     }
 

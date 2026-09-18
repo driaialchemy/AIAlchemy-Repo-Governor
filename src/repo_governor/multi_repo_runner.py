@@ -247,6 +247,7 @@ def run_repo_governance_check(
             "policy_artifact_status": "recommendations_only",
             "remediation_status": "not_requested",
             "verification_status": "scan_only_no_verification_loop",
+            "governance_status": classified.governance_status,
         })
 
         loop_output = audit_dir / "prompts" / repo_entry.name
@@ -352,7 +353,7 @@ def run_multi_repo_governance_check(
 
     if discover:
         try:
-            enabled, skipped, warnings = load_effective_repo_registry()
+            enabled, skipped, warnings = load_effective_repo_registry(owner=github_owner)
             run.discovery_warnings = warnings
             run.total_discovered = len(enabled) + len(skipped)
             run.skipped_repos = [s.to_dict() for s in skipped]
@@ -413,6 +414,12 @@ def run_multi_repo_governance_check(
                 "errors": [safe_exc],
                 "audit_path": None,
             })
+
+    unattempted_count = max(len(enabled) - len(run.repo_results), 0)
+    if unattempted_count:
+        run.errors.append(
+            f"{unattempted_count} eligible repositories were not attempted by the scan loop."
+        )
 
     scanned_results = [r for r in run.repo_results if r.get("status") == "scanned"]
     clone_failed_results = [r for r in run.repo_results if r.get("status") == "clone_failed"]
@@ -532,7 +539,7 @@ def main() -> None:
         missing = missing_email_env_vars()
         print(f"Missing SMTP env vars: {', '.join(missing)}")
         print(f"Configure GitHub secrets: {', '.join(GITHUB_SECRETS_HELP)}")
-    sys.exit(0)
+    sys.exit(1 if result.errors else 0)
 
 
 if __name__ == "__main__":

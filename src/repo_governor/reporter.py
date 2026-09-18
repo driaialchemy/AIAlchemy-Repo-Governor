@@ -26,6 +26,12 @@ def _now() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M")
 
 
+def _format_governance_status(cr: ClassifiedRepo) -> str:
+    status = cr.governance_status or {}
+    keys = ("P1", "P2", "P3", "P4", "uncertainty_monitoring")
+    return ", ".join(f"{key}={status.get(key, 'not_present')}" for key in keys)
+
+
 # ── Report 1: AI_REPO_GOVERNANCE_REPORT ──────────────────────────────────────
 
 def generate_report(classified: list[ClassifiedRepo], root_path: Path) -> str:
@@ -92,6 +98,7 @@ def generate_report(classified: list[ClassifiedRepo], root_path: Path) -> str:
             f"- **Risk:** {_badge(cr.risk_level)}",
             f"- **Readiness Score:** {cr.readiness_score}/100",
             f"- **Agent Ready:** {'Yes ✅' if cr.agent_ready else 'No ❌'}",
+            f"- **governance_status:** {_format_governance_status(cr)}",
             f"- **Files:** {r.file_count}",
             f"- **Languages:** {', '.join(r.languages) if r.languages else '—'}",
             f"- **Last Modified:** {r.last_modified.strftime('%Y-%m-%d')}",

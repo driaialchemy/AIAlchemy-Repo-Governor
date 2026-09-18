@@ -60,7 +60,24 @@ def cmd_classify(args: argparse.Namespace) -> int:
     print("-" * 68)
     for cr in classified:
         ready = "Yes" if cr.agent_ready else "No"
+        tax = cr.decision_taxonomy or {}
+        tax_bits = (
+            f"risk={tax.get('risk', cr.risk_level.value)} "
+            f"complexity={tax.get('complexity', '-')} "
+            f"regulatory={tax.get('regulatory_impact', '-')} "
+            f"business={tax.get('business_importance', '-')}"
+        )
         print(f"  {cr.repo.name:<40} {cr.risk_level.value:<10} {ready}")
+        print(f"    taxonomy {tax_bits}")
+        gov = cr.governance_status or {}
+        print(
+            "    governance_status "
+            f"P1={gov.get('P1', 'not_present')} "
+            f"P2={gov.get('P2', 'not_present')} "
+            f"P3={gov.get('P3', 'not_present')} "
+            f"P4={gov.get('P4', 'not_present')} "
+            f"uncertainty_monitoring={gov.get('uncertainty_monitoring', 'not_present')}"
+        )
 
     high = [cr for cr in classified if cr.risk_level == RiskLevel.HIGH]
     if high:
@@ -233,7 +250,7 @@ def cmd_weekly_evidence(args: argparse.Namespace) -> int:
         for err in result.errors:
             print(f"  - {err}", file=sys.stderr)
 
-    return 0
+    return 1 if result.errors else 0
 
 
 def cmd_agent_ready(args: argparse.Namespace) -> int:

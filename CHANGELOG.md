@@ -1,0 +1,2 @@
+- Scan/classify now emit governance_status (P1–P4 + uncertainty_monitoring) as not_present / present_inert / present_active; existing PASS gates unchanged.
+- P2/P4: classification output adds a decision taxonomy (risk/complexity/regulatory/business); generated policy sections labeled by TRUST letter.

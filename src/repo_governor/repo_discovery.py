@@ -382,12 +382,13 @@ def load_effective_repo_registry(
     config_path: Path | None = None,
     generated_path: Path | None = None,
     manual_path: Path | None = None,
+    owner: str | None = None,
 ) -> tuple[list[RegistryRepo], list[RegistryRepo], list[str]]:
     """Discover, filter, merge overrides, and write generated registry."""
     config = load_repo_discovery_config(config_path)
-    owner = config.get("github_owner", "driaialchemy")
+    github_owner = owner or config.get("github_owner", "driaialchemy")
 
-    discovered, warnings = discover_github_repos(owner)
+    discovered, warnings = discover_github_repos(github_owner)
     manual_data: dict[str, Any] = {}
     manual_file = manual_path or DEFAULT_MANUAL_REGISTRY
     if manual_file.exists():

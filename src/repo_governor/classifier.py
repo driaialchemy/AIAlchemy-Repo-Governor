@@ -4,6 +4,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 
+from .governance_status import discover_confidence_feeders, evaluate_governance_status
 from .scanner import RepoInfo
 
 
@@ -11,6 +12,51 @@ class RiskLevel(str, Enum):
     LOW = "LOW"
     MEDIUM = "MEDIUM"
     HIGH = "HIGH"
+
+
+def _decision_taxonomy(repo: RepoInfo, risk_level: RiskLevel) -> dict[str, str]:
+    """Classify the repo along decision-taxonomy axes (docs/labels; existing risk_level unchanged)."""
+    ai_found = set(repo.api_terms_found) & _AI_TERMS
+    cred_found = set(repo.api_terms_found) & _CRED_TERMS
+    ext_db_found = set(repo.api_terms_found) & _EXT_DB_TERMS
+    has_deploy = any(
+        [
+            repo.has_wrangler_toml,
+            repo.has_vercel_json,
+            repo.has_netlify_toml,
+            repo.has_render_yaml,
+        ]
+    )
+    has_ci = repo.has_github_workflows
+    has_containers = repo.has_dockerfile or repo.has_docker_compose
+
+    if repo.file_count > 500 or len(ai_found) >= 2 or (has_containers and has_ci):
+        complexity = "HIGH"
+    elif repo.has_tests_dir or repo.has_package_json or repo.has_pyproject or has_containers:
+        complexity = "MEDIUM"
+    else:
+        complexity = "LOW"
+
+    if repo.has_env_files or cred_found or ext_db_found:
+        regulatory_impact = "HIGH"
+    elif has_deploy or has_ci:
+        regulatory_impact = "MEDIUM"
+    else:
+        regulatory_impact = "LOW"
+
+    if has_deploy:
+        business_importance = "HIGH"
+    elif has_ci or repo.has_tests_dir:
+        business_importance = "MEDIUM"
+    else:
+        business_importance = "LOW"
+
+    return {
+        "risk": risk_level.value,
+        "complexity": complexity,
+        "regulatory_impact": regulatory_impact,
+        "business_importance": business_importance,
+    }
 
 
 @dataclass
@@ -22,6 +68,8 @@ class ClassifiedRepo:
     blocking_issues: list[str] = field(default_factory=list)
     readiness_score: int = 100
     agent_ready: bool = False
+    decision_taxonomy: dict[str, str] = field(default_factory=dict)
+    governance_status: dict[str, str] = field(default_factory=dict)
 
     @property
     def repo_name(self) -> str:
@@ -298,7 +346,11 @@ def _compute_readiness_score(repo: RepoInfo) -> int:
 
 # ── public API ───────────────────────────────────────────────────────────────
 
-def classify_repo(repo: RepoInfo) -> ClassifiedRepo:
+def classify_repo(
+    repo: RepoInfo,
+    *,
+    confidence_feeders: list[str] | None = None,
+) -> ClassifiedRepo:
     """Apply deterministic risk classification rules to a RepoInfo."""
     high_reasons, blocking, high_actions, gitignore_high = _high_signals(repo)
     medium_signals, medium_actions = _medium_signals(repo, gitignore_high)
@@ -330,8 +382,14 @@ def classify_repo(repo: RepoInfo) -> ClassifiedRepo:
         blocking_issues=blocking,
         readiness_score=readiness_score,
         agent_ready=agent_ready,
+        decision_taxonomy=_decision_taxonomy(repo, risk_level),
+        governance_status=evaluate_governance_status(
+            repo.path,
+            confidence_feeders=confidence_feeders,
+        ),
     )
 
 
 def classify_all(repos: list[RepoInfo]) -> list[ClassifiedRepo]:
-    return [classify_repo(r) for r in repos]
+    feeders = discover_confidence_feeders([r.path for r in repos])
+    return [classify_repo(r, confidence_feeders=feeders) for r in repos]

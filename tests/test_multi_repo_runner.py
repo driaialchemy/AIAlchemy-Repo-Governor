@@ -123,6 +123,20 @@ def test_multi_repo_continues_after_one_repo_fails(tmp_path):
     assert len(result.repo_results) == 2
 
 
+def test_discovery_uses_requested_owner(tmp_path):
+    with patch("repo_governor.multi_repo_runner.load_effective_repo_registry") as mock_discover:
+        mock_discover.return_value = ([], [], [])
+        run_multi_repo_governance_check(
+            owner="custom-owner",
+            mode="scan_only",
+            discover=True,
+            workspace_dir=tmp_path / "ws",
+            audit_dir=tmp_path / "audit",
+        )
+
+    mock_discover.assert_called_once_with(owner="custom-owner")
+
+
 def test_evidence_report_files_created(tmp_path):
     run = MultiRepoRunResult(
         run_id="run-1",

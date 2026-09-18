@@ -1,9 +1,18 @@
-generated_at: '2026-06-25T23:18:34+00:00'
+generated_at: '2026-09-18T23:36:40+00:00'
 repos:
 - name: Agent-Workflow-Review
   full_name: driaialchemy/Agent-Workflow-Review
   url: https://github.com/driaialchemy/Agent-Workflow-Review.git
   branch: master
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: agentstack
+  full_name: driaialchemy/agentstack
+  url: https://github.com/driaialchemy/agentstack.git
+  branch: main
   enabled: true
   mode: scan_only
   visibility: public
@@ -63,9 +72,27 @@ repos:
   visibility: public
   archived: false
   fork: false
+- name: deterministic-intake-agent
+  full_name: driaialchemy/deterministic-intake-agent
+  url: https://github.com/driaialchemy/deterministic-intake-agent.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
 - name: Device-Lifecycle-Intelligence-Platform-DLIP-
   full_name: driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
   url: https://github.com/driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: expenseverificationpipeline
+  full_name: driaialchemy/expenseverificationpipeline
+  url: https://github.com/driaialchemy/expenseverificationpipeline.git
   branch: main
   enabled: true
   mode: scan_only
@@ -111,6 +138,15 @@ repos:
 - name: mslw111
   full_name: driaialchemy/mslw111
   url: https://github.com/driaialchemy/mslw111.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: realestateprospectingapp
+  full_name: driaialchemy/realestateprospectingapp
+  url: https://github.com/driaialchemy/realestateprospectingapp.git
   branch: main
   enabled: true
   mode: scan_only
