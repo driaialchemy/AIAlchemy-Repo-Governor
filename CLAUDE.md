@@ -106,3 +106,25 @@ If context becomes too large, run `/compact` with: "Focus on completed files, te
 ## Scan Target (default)
 
 `C:\Users\msell\OneDrive\AIAlchemy\repositories`
+
+## Audit Remediation Notes
+
+- Audit path: $AuditFile
+- Risk level from audit: $risk.
+- Addressed audit issues: Multiple AI provider integrations (anthropic, gemini, google.generativeai, openai) — elevated orchestration complexity.; Credential pattern indicators in code: api_key, database_url; External database terms detected (postgres, supabase) — potential data compliance risk.; Risk level is HIGH, expected LOW.; Dependency manifests present: pyproject.toml; CI/CD workflow configuration present (.github/workflows).; HTTP networking libraries in use: aiohttp, httpx, requests; Test suite present — actively developed project.
+
+
+## AI Provider Boundary
+
+AI providers detected by audit: anthropic, gemini, google.generativeai, openai. Use providers only for the repository's documented workflow. API keys must be supplied through environment variables or managed platform secrets, never committed or echoed. Do not add redundant providers without human approval.
+
+
+## Database Compliance Boundary
+
+Database terms detected by audit: postgres, supabase. Treat database integrations as compliance-sensitive. Confirm connection strings are environment-driven, avoid production credentials, and get human approval before changing schemas, migrations, retention, or production data access.
+
+
+## Human Review Required
+
+This audit classified the repo as HIGH risk. Agents may draft governance/documentation updates, but credential, provider, database, deployment, and data-export remediation requires human review before code or data changes.
+
