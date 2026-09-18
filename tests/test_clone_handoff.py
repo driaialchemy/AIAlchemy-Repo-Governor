@@ -23,11 +23,12 @@ def _registry_entry(
     *,
     branch: str = "main",
     visibility: str = "public",
+    url: str | None = None,
 ) -> RegistryRepo:
     return RegistryRepo(
         name=name,
         full_name=f"driaialchemy/{name}",
-        url=f"https://github.com/driaialchemy/{name}.git",
+        url=url or f"https://github.com/driaialchemy/{name}.git",
         branch=branch,
         enabled=True,
         mode="scan_only",
@@ -55,6 +56,18 @@ def _git_available() -> bool:
         return False
 
 
+def _init_local_git_repo(source: Path) -> Path:
+    source.mkdir(parents=True, exist_ok=True)
+    (source / "README.md").write_text("# Source\n", encoding="utf-8")
+    (source / ".gitignore").write_text(".venv/\n", encoding="utf-8")
+    subprocess.run(["git", "init", "-b", "main"], cwd=source, check=True, capture_output=True)
+    subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=source, check=True, capture_output=True)
+    subprocess.run(["git", "config", "user.name", "Test"], cwd=source, check=True, capture_output=True)
+    subprocess.run(["git", "add", "."], cwd=source, check=True, capture_output=True)
+    subprocess.run(["git", "commit", "-m", "init"], cwd=source, check=True, capture_output=True)
+    return source
+
+
 def test_clone_creates_workspace_parent_directory(tmp_path):
     workspace = tmp_path / "workspace" / "repos"
     entry = _registry_entry("tiny-repo")
@@ -71,6 +84,33 @@ def test_clone_creates_workspace_parent_directory(tmp_path):
     assert result == (workspace / "tiny-repo").resolve()
     assert result.is_dir()
     assert (result / ".git").exists()
+
+
+def test_relative_workspace_dir_does_not_nest_clone(tmp_path, monkeypatch):
+    """Regression for weekly CI: relative workspace/repos must not nest under cwd."""
+    monkeypatch.chdir(tmp_path)
+    relative_ws = Path("workspace") / "repos"
+    entry = _registry_entry("rel-repo")
+    captured: list[list[str]] = []
+
+    def fake_git(args, *, cwd, token=None):
+        captured.append(list(args))
+        dest = Path(args[-1])
+        assert dest.is_absolute(), f"clone dest must be absolute, got {dest}"
+        assert dest == (tmp_path / "workspace" / "repos" / "rel-repo").resolve()
+        dest.mkdir(parents=True)
+        (dest / ".git").mkdir()
+
+    with patch("repo_governor.multi_repo_runner._git", side_effect=fake_git):
+        result = clone_or_update_target_repo(entry, relative_ws)
+
+    expected = (tmp_path / "workspace" / "repos" / "rel-repo").resolve()
+    assert result == expected
+    assert result.is_dir()
+    nested = tmp_path / "workspace" / "repos" / "workspace" / "repos" / "rel-repo"
+    assert not nested.exists()
+    assert captured
+    assert captured[0][-1] == str(expected)
 
 
 def test_clone_uses_absolute_destination_not_nested_path(tmp_path, monkeypatch):
@@ -306,6 +346,10 @@ def test_clone_failure_user_facing_issue_not_not_a_directory(tmp_path):
     )
     paths = generate_evidence_reports(run, output_root=tmp_path / "reports")
     md = paths.markdown_path.read_text(encoding="utf-8")
+    issue_lines = [line for line in md.splitlines() if line.startswith("- **Issue:**")]
+    assert issue_lines
+    assert any("could not be cloned into the workflow workspace" in line for line in issue_lines)
+    assert all("Not a directory" not in line for line in issue_lines)
     assert "could not be cloned into the workflow workspace" in md
     assert "Not a directory" not in md.split("Issue:")[1].split("Corrective action")[0]
 
@@ -363,6 +407,18 @@ def test_multi_repo_continues_after_clone_failure(tmp_path):
     assert len(result.repo_results) == 2
 
 
+def test_verify_cloned_repo_rejects_missing_directory(tmp_path):
+    workspace = tmp_path / "workspace" / "repos"
+    entry = _registry_entry("missing-dir")
+
+    def fake_git(args, *, cwd, token=None):
+        return None
+
+    with patch("repo_governor.multi_repo_runner._git", side_effect=fake_git):
+        with pytest.raises(RuntimeError, match="not a directory"):
+            clone_or_update_target_repo(entry, workspace)
+
+
 @pytest.mark.skipif(not _git_available(), reason="git not available")
 def test_smoke_clone_public_repo(tmp_path):
     """Clone a small public repo into workspace/repos and verify scan handoff."""
@@ -390,3 +446,31 @@ def test_smoke_clone_public_repo(tmp_path):
     )
     assert result["status"] == "scanned"
     assert Path(result["audit_path"]).exists()
+
+
+@pytest.mark.skipif(not _git_available(), reason="git not available")
+def test_real_clone_from_local_repo_with_relative_workspace(tmp_path, monkeypatch):
+    source = _init_local_git_repo(tmp_path / "source-repo")
+    work = tmp_path / "run"
+    work.mkdir()
+    monkeypatch.chdir(work)
+
+    entry = _registry_entry("source-repo", url=str(source))
+    result = clone_or_update_target_repo(entry, Path("workspace") / "repos")
+
+    expected = (work / "workspace" / "repos" / "source-repo").resolve()
+    assert result == expected
+    assert result.is_dir()
+    assert (result / "README.md").exists()
+    assert (result / ".git").exists()
+    nested = work / "workspace" / "repos" / "workspace" / "repos" / "source-repo"
+    assert not nested.exists()
+
+    audit_dir = tmp_path / "audit"
+    scan_result = run_repo_governance_check(
+        result,
+        entry,
+        mode="scan_only",
+        audit_dir=audit_dir,
+    )
+    assert scan_result["status"] == "scanned"

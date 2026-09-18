@@ -1,0 +1,9 @@
+{
+  "repo": "driaialchemy/contractriskreviewpipeline",
+  "mode": "scan_only",
+  "timestamp": "2026-07-02T23:47:25+00:00",
+  "status": "failed",
+  "errors": [
+    "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline"
+  ]
+}

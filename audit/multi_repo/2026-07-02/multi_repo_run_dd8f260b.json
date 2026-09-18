@@ -1,0 +1,341 @@
+{
+  "run_id": "dd8f260b-300c-4439-9a26-51869b9eb3e0",
+  "timestamp": "2026-07-02T23:47:21+00:00",
+  "github_owner": "driaialchemy",
+  "mode": "scan_only",
+  "total_discovered": 17,
+  "total_scanned": 0,
+  "total_skipped": 0,
+  "skipped_repos": [],
+  "repo_results": [
+    {
+      "name": "Agent-Workflow-Review",
+      "full_name": "driaialchemy/Agent-Workflow-Review",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Agent-Workflow-Review"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_Agent-Workflow-Review_20260702T234721Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "agentstack",
+      "full_name": "driaialchemy/agentstack",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/agentstack"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_agentstack_20260702T234722Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-agent-governance",
+      "full_name": "driaialchemy/ai-agent-governance",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-governance"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_ai-agent-governance_20260702T234723Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-agent-research-emailer",
+      "full_name": "driaialchemy/ai-agent-research-emailer",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-research-emailer"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_ai-agent-research-emailer_20260702T234724Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-alchemy-prompt-evaluator",
+      "full_name": "driaialchemy/ai-alchemy-prompt-evaluator",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-alchemy-prompt-evaluator"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_ai-alchemy-prompt-evaluator_20260702T234724Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "AIAlchemy-Repo-Governor",
+      "full_name": "driaialchemy/AIAlchemy-Repo-Governor",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/AIAlchemy-Repo-Governor"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_AIAlchemy-Repo-Governor_20260702T234724Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "contract-risk-review-pipeline",
+      "full_name": "driaialchemy/contract-risk-review-pipeline",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contract-risk-review-pipeline"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_contract-risk-review-pipeline_20260702T234725Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "contractriskreviewpipeline",
+      "full_name": "driaialchemy/contractriskreviewpipeline",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_contractriskreviewpipeline_20260702T234725Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "full_name": "driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Device-Lifecycle-Intelligence-Platform-DLIP-"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260702T234746Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "fishhatchery",
+      "full_name": "driaialchemy/fishhatchery",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/fishhatchery"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_fishhatchery_20260702T234747Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "governance-logger",
+      "full_name": "driaialchemy/governance-logger",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/governance-logger"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_governance-logger_20260702T234747Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "jobseeker",
+      "full_name": "driaialchemy/jobseeker",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/jobseeker"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_jobseeker_20260702T234748Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "mavenfuzzyfactory",
+      "full_name": "driaialchemy/mavenfuzzyfactory",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_mavenfuzzyfactory_20260702T234748Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "mslw111",
+      "full_name": "driaialchemy/mslw111",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mslw111"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_mslw111_20260702T234748Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "skillsartifactsbuild",
+      "full_name": "driaialchemy/skillsartifactsbuild",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/skillsartifactsbuild"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_skillsartifactsbuild_20260702T234749Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "testingsoftwareengineering",
+      "full_name": "driaialchemy/testingsoftwareengineering",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/testingsoftwareengineering"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_testingsoftwareengineering_20260702T234749Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "workeragentcowork",
+      "full_name": "driaialchemy/workeragentcowork",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/workeragentcowork"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-02/repo_workeragentcowork_20260702T234750Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    }
+  ],
+  "errors": [],
+  "discovery_warnings": [
+    "No REPO_GOVERNOR_PAT or GITHUB_TOKEN set \u2014 only public repositories will be discovered. Private repos require a token."
+  ],
+  "email_delivery_status": "sent",
+  "email_delivery_message": "Evidence report emailed to ***REDACTED***"
+}

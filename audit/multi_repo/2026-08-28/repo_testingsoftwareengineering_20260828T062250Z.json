@@ -1,0 +1,69 @@
+{
+  "repo": "driaialchemy/testingsoftwareengineering",
+  "mode": "scan_only",
+  "timestamp": "2026-08-28T06:22:50+00:00",
+  "initial_scan": {
+    "name": "testingsoftwareengineering",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/testingsoftwareengineering",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": true,
+    "has_agents_md": true,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 13,
+    "languages": [
+      "Python"
+    ],
+    "has_tests_dir": true,
+    "artifact_paths": [],
+    "api_terms_found": [],
+    "last_modified": "2026-08-28T06:22:50.838023"
+  },
+  "risk_classification": {
+    "risk_level": "MEDIUM",
+    "readiness_score": 100,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Dependency manifests present: requirements.txt",
+      "Test suite present \u2014 actively developed project."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Run a dependency audit before starting an agent session.",
+      "Run the test suite before and after any agent session."
+    ],
+    "scan": {
+      "name": "testingsoftwareengineering",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/testingsoftwareengineering",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": true,
+      "has_agents_md": true,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 13,
+      "languages": [
+        "Python"
+      ],
+      "has_tests_dir": true,
+      "artifact_paths": [],
+      "api_terms_found": [],
+      "last_modified": "2026-08-28T06:22:50.838023"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Risk level is MEDIUM, expected LOW.",
+    "Dependency manifests present: requirements.txt",
+    "Test suite present \u2014 actively developed project."
+  ],
+  "errors": []
+}

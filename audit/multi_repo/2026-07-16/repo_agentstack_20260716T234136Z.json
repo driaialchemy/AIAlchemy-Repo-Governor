@@ -1,0 +1,9 @@
+{
+  "repo": "driaialchemy/agentstack",
+  "mode": "scan_only",
+  "timestamp": "2026-07-16T23:41:36+00:00",
+  "status": "failed",
+  "errors": [
+    "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/agentstack"
+  ]
+}

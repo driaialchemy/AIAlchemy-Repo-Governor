@@ -1,0 +1,83 @@
+{
+  "repo": "driaialchemy/mavenfuzzyfactory",
+  "mode": "scan_only",
+  "timestamp": "2026-08-28T06:22:49+00:00",
+  "initial_scan": {
+    "name": "mavenfuzzyfactory",
+    "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory",
+    "is_git_repo": true,
+    "has_gitignore": true,
+    "has_readme": true,
+    "has_claude_md": true,
+    "has_agents_md": true,
+    "has_env_files": false,
+    "env_file_paths": [],
+    "file_count": 53,
+    "languages": [
+      "Python",
+      "SQL"
+    ],
+    "has_tests_dir": true,
+    "artifact_paths": [],
+    "api_terms_found": [
+      "requests",
+      "sqlite"
+    ],
+    "last_modified": "2026-08-28T06:22:49.769921"
+  },
+  "risk_classification": {
+    "risk_level": "MEDIUM",
+    "readiness_score": 100,
+    "agent_ready": false,
+    "risk_reasons": [
+      "Dependency manifests present: pyproject.toml",
+      "CI/CD workflow configuration present (.github/workflows).",
+      "HTTP networking libraries in use: requests",
+      "Test suite present \u2014 actively developed project."
+    ],
+    "blocking_issues": [],
+    "recommended_actions": [
+      "Run a dependency audit before starting an agent session.",
+      "Review CI/CD workflow permissions before an agent session.",
+      "Document external API endpoints in README to give agents accurate context.",
+      "Run the test suite before and after any agent session."
+    ],
+    "scan": {
+      "name": "mavenfuzzyfactory",
+      "path": "/home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory",
+      "is_git_repo": true,
+      "has_gitignore": true,
+      "has_readme": true,
+      "has_claude_md": true,
+      "has_agents_md": true,
+      "has_env_files": false,
+      "env_file_paths": [],
+      "file_count": 53,
+      "languages": [
+        "Python",
+        "SQL"
+      ],
+      "has_tests_dir": true,
+      "artifact_paths": [],
+      "api_terms_found": [
+        "requests",
+        "sqlite"
+      ],
+      "last_modified": "2026-08-28T06:22:49.769921"
+    }
+  },
+  "generated_artifacts": [],
+  "agent_prompt_path": null,
+  "remediation_plan_path": null,
+  "remediation_status": "not_requested",
+  "remediation_summary": "",
+  "passed": false,
+  "remaining_issues": [
+    "Risk level is MEDIUM, expected LOW.",
+    "Dependency manifests present: pyproject.toml",
+    "CI/CD workflow configuration present (.github/workflows).",
+    "HTTP networking libraries in use: requests",
+    "Test suite present \u2014 actively developed project."
+  ],
+  "errors": []
+}

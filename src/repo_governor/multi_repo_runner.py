@@ -72,11 +72,7 @@ def _sanitize_message(message: str, token: str | None = None) -> str:
     return redact_secrets(message, extra_values=extras)
 
 
-def _log_repo_diag(
-    message: str,
-    *,
-    token: str | None = None,
-) -> None:
+def _log_repo_diag(message: str, *, token: str | None = None) -> None:
     """Emit sanitized diagnostic lines for CI without leaking secrets."""
     logger.info(_sanitize_message(message, token))
 
@@ -97,8 +93,15 @@ def clone_or_update_target_repo(
     *,
     token: str | None = None,
 ) -> Path:
-    """Clone or update a repository into the workspace directory."""
-    workspace = workspace_dir.resolve()
+    """Clone or update a repository into the workspace directory.
+
+    Workspace and clone destinations are resolved to absolute paths before
+    invoking git. A relative destination with cwd=workspace/repos would
+    otherwise nest clones at workspace/repos/workspace/repos/<name>, after
+    which the scanner looks at workspace/repos/<name> and reports
+    "Not a directory".
+    """
+    workspace = workspace_dir.expanduser().resolve()
     workspace.mkdir(parents=True, exist_ok=True)
     target = (workspace / repo_entry.name).resolve()
 
@@ -366,7 +369,10 @@ def run_multi_repo_governance_check(
         enabled = [r for r in load_generated_repo_registry() if r.enabled]
         run.total_discovered = len(enabled)
 
-    ws = (workspace_dir or Path("workspace") / "repos").resolve()
+    if not logging.getLogger().handlers:
+        logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+    ws = (workspace_dir or Path("workspace") / "repos").expanduser().resolve()
     audit_root = audit_dir or Path("audit") / "multi_repo" / report_date
     audit_root.mkdir(parents=True, exist_ok=True)
 
@@ -378,7 +384,7 @@ def run_multi_repo_governance_check(
     for entry in enabled:
         effective_mode = entry.mode if entry.mode in VALID_MODES else mode
         clone_dest = ws / entry.name
-        _log_repo_diag(f"Discovering repo: {entry.full_name}", token=token)
+        _log_repo_diag(f"Preparing repo: {entry.full_name}", token=token)
         _log_repo_diag(f"Clone destination: {clone_dest}", token=token)
         try:
             if entry.name in local_overrides:
@@ -524,7 +530,7 @@ def main() -> None:
     passed = len([r for r in result.repo_results if r.get("passed")])
     print(f"Run ID: {result.run_id}")
     print(f"Discovered: {result.total_discovered}")
-    print(f"Eligible: {len([r for r in result.repo_results])}")
+    print(f"Eligible: {len(result.repo_results)}")
     print(f"Scanned: {scanned}")
     print(f"Clone failed: {clone_failed}")
     print(f"Scan failed: {scan_failed}")

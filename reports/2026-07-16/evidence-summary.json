@@ -1,0 +1,533 @@
+{
+  "run_id": "9708028a-5eaa-4d6a-bcc8-da611d18bb7f",
+  "report_timestamp": "2026-07-16T23:41:34+00:00",
+  "github_owner": "driaialchemy",
+  "mode": "scan_only",
+  "total_discovered": 17,
+  "total_scanned": 0,
+  "total_skipped": 0,
+  "total_passed": 0,
+  "total_needs_work": 0,
+  "skipped_repos": [],
+  "repo_results": [
+    {
+      "name": "Agent-Workflow-Review",
+      "full_name": "driaialchemy/Agent-Workflow-Review",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Agent-Workflow-Review"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_Agent-Workflow-Review_20260716T234136Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "agentstack",
+      "full_name": "driaialchemy/agentstack",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/agentstack"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_agentstack_20260716T234136Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-agent-governance",
+      "full_name": "driaialchemy/ai-agent-governance",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-governance"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_ai-agent-governance_20260716T234137Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-agent-research-emailer",
+      "full_name": "driaialchemy/ai-agent-research-emailer",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-research-emailer"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_ai-agent-research-emailer_20260716T234138Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "ai-alchemy-prompt-evaluator",
+      "full_name": "driaialchemy/ai-alchemy-prompt-evaluator",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-alchemy-prompt-evaluator"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_ai-alchemy-prompt-evaluator_20260716T234138Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "AIAlchemy-Repo-Governor",
+      "full_name": "driaialchemy/AIAlchemy-Repo-Governor",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/AIAlchemy-Repo-Governor"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_AIAlchemy-Repo-Governor_20260716T234139Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "contract-risk-review-pipeline",
+      "full_name": "driaialchemy/contract-risk-review-pipeline",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contract-risk-review-pipeline"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_contract-risk-review-pipeline_20260716T234139Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "contractriskreviewpipeline",
+      "full_name": "driaialchemy/contractriskreviewpipeline",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_contractriskreviewpipeline_20260716T234140Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "full_name": "driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Device-Lifecycle-Intelligence-Platform-DLIP-"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_Device-Lifecycle-Intelligence-Platform-DLIP-_20260716T234201Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "fishhatchery",
+      "full_name": "driaialchemy/fishhatchery",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/fishhatchery"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_fishhatchery_20260716T234201Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "governance-logger",
+      "full_name": "driaialchemy/governance-logger",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/governance-logger"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_governance-logger_20260716T234202Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "jobseeker",
+      "full_name": "driaialchemy/jobseeker",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/jobseeker"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_jobseeker_20260716T234202Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "mavenfuzzyfactory",
+      "full_name": "driaialchemy/mavenfuzzyfactory",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_mavenfuzzyfactory_20260716T234202Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "mslw111",
+      "full_name": "driaialchemy/mslw111",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mslw111"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_mslw111_20260716T234203Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "skillsartifactsbuild",
+      "full_name": "driaialchemy/skillsartifactsbuild",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/skillsartifactsbuild"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_skillsartifactsbuild_20260716T234203Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "testingsoftwareengineering",
+      "full_name": "driaialchemy/testingsoftwareengineering",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/testingsoftwareengineering"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_testingsoftwareengineering_20260716T234204Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    },
+    {
+      "name": "workeragentcowork",
+      "full_name": "driaialchemy/workeragentcowork",
+      "mode": "scan_only",
+      "status": "failed",
+      "passed": false,
+      "errors": [
+        "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/workeragentcowork"
+      ],
+      "audit_path": "audit/multi_repo/2026-07-16/repo_workeragentcowork_20260716T234204Z.json",
+      "missing_controls": [
+        "CLAUDE.md",
+        ".gitignore",
+        "README",
+        "AGENTS.md",
+        "version control (git)"
+      ],
+      "recommended_action": "Add CLAUDE.md using `repo-governor policy-init` and review before committing."
+    }
+  ],
+  "corrective_actions": [
+    {
+      "repo": "driaialchemy/Agent-Workflow-Review",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Agent-Workflow-Review",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/agentstack",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/agentstack",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/ai-agent-governance",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-governance",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/ai-agent-research-emailer",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-agent-research-emailer",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/ai-alchemy-prompt-evaluator",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/ai-alchemy-prompt-evaluator",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/AIAlchemy-Repo-Governor",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/AIAlchemy-Repo-Governor",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/contract-risk-review-pipeline",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contract-risk-review-pipeline",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/contractriskreviewpipeline",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/contractriskreviewpipeline",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/Device-Lifecycle-Intelligence-Platform-DLIP-",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/fishhatchery",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/fishhatchery",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/governance-logger",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/governance-logger",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/jobseeker",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/jobseeker",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/mavenfuzzyfactory",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mavenfuzzyfactory",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/mslw111",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/mslw111",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/skillsartifactsbuild",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/skillsartifactsbuild",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/testingsoftwareengineering",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/testingsoftwareengineering",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    },
+    {
+      "repo": "driaialchemy/workeragentcowork",
+      "issue": "Not a directory: /home/runner/work/AIAlchemy-Repo-Governor/AIAlchemy-Repo-Governor/workspace/repos/workeragentcowork",
+      "why_it_matters": "The repository could not be assessed, leaving a governance gap.",
+      "corrective_action": "Verify clone access, branch name, and repository availability; then re-run the weekly evidence workflow.",
+      "verification_action": "Confirm the repo appears in the next evidence report with status scanned.",
+      "expected_evidence": "Per-repo audit JSON with status scanned.",
+      "recommended_mode": "scan_only",
+      "human_review_required": true,
+      "note": "Weekly scan_only mode reports findings only \u2014 target repos are not modified automatically."
+    }
+  ],
+  "errors": [],
+  "discovery_warnings": [
+    "No REPO_GOVERNOR_PAT or GITHUB_TOKEN set \u2014 only public repositories will be discovered. Private repos require a token."
+  ],
+  "email_delivery_status": "sent",
+  "email_delivery_message": "Evidence report emailed to ***REDACTED***",
+  "audit_summary_path": "audit/multi_repo/2026-07-16/multi_repo_run_9708028a.json"
+}
