@@ -1,53 +1,26 @@
-generated_at: '2026-09-18T23:36:40+00:00'
+generated_at: '2026-09-25T00:54:11+00:00'
 repos:
-- name: Agent-Workflow-Review
-  full_name: driaialchemy/Agent-Workflow-Review
-  url: https://github.com/driaialchemy/Agent-Workflow-Review.git
+- name: AgentAuditLogger
+  full_name: driaialchemy/AgentAuditLogger
+  url: https://github.com/driaialchemy/AgentAuditLogger.git
   branch: master
   enabled: true
   mode: scan_only
   visibility: public
   archived: false
   fork: false
-- name: agentstack
-  full_name: driaialchemy/agentstack
-  url: https://github.com/driaialchemy/agentstack.git
+- name: AgentGovernanceHub
+  full_name: driaialchemy/AgentGovernanceHub
+  url: https://github.com/driaialchemy/AgentGovernanceHub.git
   branch: main
   enabled: true
   mode: scan_only
   visibility: public
   archived: false
   fork: false
-- name: ai-agent-governance
-  full_name: driaialchemy/ai-agent-governance
-  url: https://github.com/driaialchemy/ai-agent-governance.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: ai-agent-research-emailer
-  full_name: driaialchemy/ai-agent-research-emailer
-  url: https://github.com/driaialchemy/ai-agent-research-emailer.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: ai-alchemy-prompt-evaluator
-  full_name: driaialchemy/ai-alchemy-prompt-evaluator
-  url: https://github.com/driaialchemy/ai-alchemy-prompt-evaluator.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: AIAlchemy-Repo-Governor
-  full_name: driaialchemy/AIAlchemy-Repo-Governor
-  url: https://github.com/driaialchemy/AIAlchemy-Repo-Governor.git
+- name: AgentProposalReview
+  full_name: driaialchemy/AgentProposalReview
+  url: https://github.com/driaialchemy/AgentProposalReview.git
   branch: master
   enabled: true
   mode: scan_only
@@ -63,91 +36,73 @@ repos:
   visibility: public
   archived: false
   fork: false
-- name: contractriskreviewpipeline
-  full_name: driaialchemy/contractriskreviewpipeline
-  url: https://github.com/driaialchemy/contractriskreviewpipeline.git
+- name: ContractRiskReview
+  full_name: driaialchemy/ContractRiskReview
+  url: https://github.com/driaialchemy/ContractRiskReview.git
   branch: main
   enabled: true
   mode: scan_only
   visibility: public
   archived: false
   fork: false
-- name: deterministic-intake-agent
-  full_name: driaialchemy/deterministic-intake-agent
-  url: https://github.com/driaialchemy/deterministic-intake-agent.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: Device-Lifecycle-Intelligence-Platform-DLIP-
-  full_name: driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-
-  url: https://github.com/driaialchemy/Device-Lifecycle-Intelligence-Platform-DLIP-.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: expenseverificationpipeline
-  full_name: driaialchemy/expenseverificationpipeline
-  url: https://github.com/driaialchemy/expenseverificationpipeline.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: fishhatchery
-  full_name: driaialchemy/fishhatchery
-  url: https://github.com/driaialchemy/fishhatchery.git
-  branch: master
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: governance-logger
-  full_name: driaialchemy/governance-logger
-  url: https://github.com/driaialchemy/governance-logger.git
-  branch: master
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: jobseeker
-  full_name: driaialchemy/jobseeker
-  url: https://github.com/driaialchemy/jobseeker.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: mavenfuzzyfactory
-  full_name: driaialchemy/mavenfuzzyfactory
-  url: https://github.com/driaialchemy/mavenfuzzyfactory.git
+- name: EcommerceQueryStudio
+  full_name: driaialchemy/EcommerceQueryStudio
+  url: https://github.com/driaialchemy/EcommerceQueryStudio.git
   branch: codex/remediate-runnable-baseline
   enabled: true
   mode: scan_only
   visibility: public
   archived: false
   fork: false
-- name: mslw111
-  full_name: driaialchemy/mslw111
-  url: https://github.com/driaialchemy/mslw111.git
+- name: EquipmentComplianceTracker
+  full_name: driaialchemy/EquipmentComplianceTracker
+  url: https://github.com/driaialchemy/EquipmentComplianceTracker.git
   branch: main
   enabled: true
   mode: scan_only
   visibility: public
   archived: false
   fork: false
-- name: realestateprospectingapp
-  full_name: driaialchemy/realestateprospectingapp
-  url: https://github.com/driaialchemy/realestateprospectingapp.git
+- name: ExpenseVerificationDesk
+  full_name: driaialchemy/ExpenseVerificationDesk
+  url: https://github.com/driaialchemy/ExpenseVerificationDesk.git
   branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: IncomingRequestScreener
+  full_name: driaialchemy/IncomingRequestScreener
+  url: https://github.com/driaialchemy/IncomingRequestScreener.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: MultiAgentWorkbench
+  full_name: driaialchemy/MultiAgentWorkbench
+  url: https://github.com/driaialchemy/MultiAgentWorkbench.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: PropertyLeadFinder
+  full_name: driaialchemy/PropertyLeadFinder
+  url: https://github.com/driaialchemy/PropertyLeadFinder.git
+  branch: main
+  enabled: true
+  mode: scan_only
+  visibility: public
+  archived: false
+  fork: false
+- name: RepoReadinessGovernor
+  full_name: driaialchemy/RepoReadinessGovernor
+  url: https://github.com/driaialchemy/RepoReadinessGovernor.git
+  branch: master
   enabled: true
   mode: scan_only
   visibility: public
@@ -156,24 +111,6 @@ repos:
 - name: skillsartifactsbuild
   full_name: driaialchemy/skillsartifactsbuild
   url: https://github.com/driaialchemy/skillsartifactsbuild.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: testingsoftwareengineering
-  full_name: driaialchemy/testingsoftwareengineering
-  url: https://github.com/driaialchemy/testingsoftwareengineering.git
-  branch: main
-  enabled: true
-  mode: scan_only
-  visibility: public
-  archived: false
-  fork: false
-- name: workeragentcowork
-  full_name: driaialchemy/workeragentcowork
-  url: https://github.com/driaialchemy/workeragentcowork.git
   branch: main
   enabled: true
   mode: scan_only
